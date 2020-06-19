@@ -23,7 +23,7 @@ html {
     font-weight: bold;
     height: 200px;
     padding:40px;
-    position: fixed;
+    position: absolute;
     text-align: center;
 }
 

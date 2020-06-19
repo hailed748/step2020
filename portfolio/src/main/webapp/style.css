@@ -1,9 +1,39 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+.jumbotron {
+    align-content: center;
+    display: flex;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("/images/jumboBack.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    justify-content: center;
+    position: relative;
 }
 
-#greeting-container {
-  margin-top: 20px;
+.headline-text {
+    border: 5px solid white;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    height: 200px;
+    padding:40px;
+    position: fixed;
+    text-align: center;
+}
+
+#about-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}
+.about {
+    font-family: 16px/3 Arial, Helvetica, sans-serif;
+    margin: 35px 350px;
 }

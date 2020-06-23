@@ -22,6 +22,6 @@ function nextImage(){
 }
 
 function prevImage(){
-    currentIndex = ((currentIndex - 1  % pictures.length) + pictures.length) % pictures.length;
+    currentIndex = (currentIndex + pictures.length - 1) % pictures.length;
     document.getElementById("projectImg").src = pictures[currentIndex];
 }

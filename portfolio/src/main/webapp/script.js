@@ -13,25 +13,15 @@
 // limitations under the License.
 
 
-const pictures = ["images/proj1.jpg","images/proj2.jpg","images/proj3.jpg"]
+const pictures = ["images/proj1.jpg", "images/proj2.jpg", "images/proj3.jpg"]
 var currentIndex = 0;
 
 function nextImage(){
-    if(currentIndex < pictures.length - 1){
-        currentIndex ++;
-    }
-    else{
-        currentIndex = 0;
-    }
-    document.slide.src = pictures[currentIndex]
+    currentIndex = (currentIndex + 1) % pictures.length;
+    document.getElementById("projectImg").src = pictures[currentIndex];
 }
 
 function prevImage(){
-    if(currentIndex > 0){
-        currentIndex --;
-    }
-    else{
-        currentIndex = pictures.length - 1;
-    }
-    document.slide.src = pictures[currentIndex]
+    currentIndex = ((currentIndex - 1  % pictures.length) + pictures.length) % pictures.length;
+    document.getElementById("projectImg").src = pictures[currentIndex];
 }

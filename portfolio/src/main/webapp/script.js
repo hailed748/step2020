@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-const pictures = ["images/proj1.jpg", "images/proj2.jpg", "images/proj3.jpg"]
+const pictures = ["images/photos/proj1.jpg", "images/photos/proj2.jpg", "images/photos/proj3.jpg"]
 var currentIndex = 0;
 
 function nextImage(){

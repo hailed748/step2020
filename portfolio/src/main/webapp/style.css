@@ -19,8 +19,8 @@ html {
 .social{
     display: flex;
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 40px;
+    top: 40px;
 }
 
 .icon{
@@ -103,7 +103,7 @@ html {
 
 .titles{
     font-size: 48px;
-    padding: 60px 0;
+    padding: 60px 0 20px 0;
     margin: 0px;
     text-align: center;
     text-decoration: underline;
@@ -121,6 +121,7 @@ html {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    padding-top: 40px;
 }
 
 .photography{
@@ -135,6 +136,7 @@ html {
     display: grid;    
     grid-template-columns: repeat(18,1fr);
     grid-template-rows: repeat(9,1fr);
+    padding-top: 40px;
     row-gap: 40px;
 }
 
@@ -181,4 +183,153 @@ html {
     grid-column: 13 / 19;
     grid-row: 4 / 8;
     margin: 0;
+}
+
+.blog{
+    background-color: gainsboro;
+    height: 100vh;
+    padding: 50px 200px;
+}
+
+
+.container {
+    display: block;
+	max-width: 1600px;
+	margin: auto;
+}
+
+.cards {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 15px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    color: darkslategrey;
+    margin: 45px;
+    max-width: 380px;
+    position: relative;
+    text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+	}
+
+.card::after{
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.card:hover {
+    transform: scale(1.05,1.05);
+}
+
+.card:hover::after{
+    opacity: 1;
+}
+
+span {
+    display: block;
+}
+
+.card-summary {
+    padding: 30px;
+}
+
+.card-thumbnail {
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px 10px 0 0;
+    height: 270px;
+    position: relative;
+    overflow: hidden;
+}
+
+.date{
+    background: #e74c3c;
+    border-radius: 100%;
+    color: white;
+    font-weight: bolder;
+    height: 50px;
+    padding: 10px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 50px;
+}
+
+.day{
+    font-size: 20px;
+    margin: 0;
+}
+.month{
+    font-size: 16px;
+    margin: 0;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+.card-topic {
+    background: #e74c3c;
+    bottom: 0;
+    color: white;
+    font: 18px/1.2 'proxima-nova-soft', sans-serif;
+    font-weight: bolder;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    width: 33%;
+}
+
+.card-title{    
+    color: #3e3f40;
+    font: 24px/1.2 'proxima-nova-soft', sans-serif;
+    font-weight: bolder;
+    margin: 0;
+    padding: 0 0 10px;
+}
+
+.card-subtitle{
+    color: #e74c3c;
+    font: 18px/1.2 'proxima-nova-soft', sans-serif;
+    font-weight: bold;
+}
+
+.card-description{
+    color: gray;
+    font: 14px/2 'proxima-nova-soft', sans-serif;
+}
+
+.thumb1{
+    background-image: url(https://placeimg.com/400/200/animals);
+}
+
+.thumb2{
+    background-image: url(https://placeimg.com/400/200/arch);
+}
+
+.thumb3{
+    background-image: url(https://placeimg.com/400/200/nature);
+}
+
+.thumb4{
+    background-image: url(https://placeimg.com/400/200/people);
+}
+
+.thumb5{
+    background-image: url(https://placeimg.com/400/200/tech);
+}
+
+.thumb6{
+    background-image: url(https://placeimg.com/640/480/any);
 }

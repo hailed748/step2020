@@ -4,23 +4,41 @@ html {
     padding: 0;
 }
 
-.jumbotron {
+.hero{
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/images/photos/jumbo4.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: black;
     display: flex;
     height: 100vh;
     justify-content: center;
-    position: relative;
+    width: 100%;
 }
 
-.social{
+.hero::after{
+    background: rgba(0, 0, 0, 0.5);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+.hero video{
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+}
+
+.hero .social{
     display: flex;
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 40px;
+    top: 40px;
+    z-index: 15;
 }
 
 .icon{
@@ -33,20 +51,18 @@ html {
 .headline-text {
     border: 5px solid white;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 100px;
-    font-weight: bold;
-    height: 120px;
+    font: 2em/1.2 Arial, Helvetica, sans-serif;
+    font-weight: bolder;
     padding:40px;
-    position: absolute;
-    margin: 0;
+    position: relative;
     text-align: center;
+    z-index: 20;
 }
 
 .about {
     background-color:white;
-    height: 100vh;
-    overflow: scroll;
+    overflow: hidden;
+    padding-bottom: 200px;
 }
 
 .headshot-box {
@@ -55,7 +71,7 @@ html {
     flex-shrink: 0;
     flex-flow: row wrap;
     justify-content: center;
-    padding: 60px 0;
+    padding: 150px 0px 60px 0;
 }
 
 .headshot-format {
@@ -90,20 +106,31 @@ html {
     text-decoration: underline;
 }
 
-.about-body{
+.about-text{
     font: 18px/2 Arial, Helvetica, sans-serif;
     margin: 0px 350px;
     padding: 20px;
 }
 
+about-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .projects{
+    align-items: center;
     background-color: gainsboro;
-    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    padding-bottom: 200px;
 }
 
 .titles{
     font-size: 48px;
-    padding: 60px 0;
+    padding: 60px 0 20px 0;
     margin: 0px;
     text-align: center;
     text-decoration: underline;
@@ -111,9 +138,11 @@ html {
 
 #projectImg{
     align-items: center;
-    height: 720px;
+    height: auto;
+    max-height: 80vh;
+    max-width: 80vh;
     padding: 0 70px 60px 70px;
-    width: 1280px;
+    width: auto;
 }
 
 .slideshow{
@@ -121,12 +150,14 @@ html {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    padding-top: 40px;
 }
 
 .photography{
     align-items: center;
     background-color: #FBFBFB ;
-    padding: 0 700px 50px 700px;
+    display: block;
+    padding: 0 0 50px 0px;
     position: relative;
 }
 
@@ -135,6 +166,10 @@ html {
     display: grid;    
     grid-template-columns: repeat(18,1fr);
     grid-template-rows: repeat(9,1fr);
+    margin: auto;
+    max-height: 80vh;
+    max-width: 80vh;
+    padding-top: 40px;
     row-gap: 40px;
 }
 
@@ -181,4 +216,176 @@ html {
     grid-column: 13 / 19;
     grid-row: 4 / 8;
     margin: 0;
+}
+
+.blog{
+    background-color: gainsboro;
+    padding: 50px 200px;
+}
+
+
+.container {
+    display: block;
+	max-width: 1600px;
+	margin: auto;
+}
+
+.cards {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 15px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    color: darkslategrey;
+    margin: 45px;
+    max-width: 380px;
+    position: relative;
+    text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+	}
+
+.card::after{
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.card:hover {
+    transform: scale(1.05,1.05);
+}
+
+.card:hover::after{
+    opacity: 1;
+}
+
+span {
+    display: block;
+}
+
+.card-summary {
+    padding: 30px;
+}
+
+.card-thumbnail {
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px 10px 0 0;
+    height: 270px;
+    position: relative;
+    overflow: hidden;
+}
+
+.date{
+    background: #e74c3c;
+    border-radius: 100%;
+    color: white;
+    font-weight: bolder;
+    height: 50px;
+    padding: 10px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 50px;
+}
+
+.day{
+    font-size: 20px;
+    margin: 0;
+}
+.month{
+    font-size: 16px;
+    margin: 0;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+.card-topic {
+    background: #e74c3c;
+    bottom: 0;
+    color: white;
+    font: 18px/1.3 'proxima-nova-soft', sans-serif;
+    font-weight: bolder;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    width: 33%;
+}
+
+.card-title{    
+    color: #3e3f40;
+    font: 24px/1.2 'proxima-nova-soft', sans-serif;
+    font-weight: bolder;
+    margin: 0;
+    padding: 0 0 10px;
+}
+
+.card-subtitle{
+    color: #e74c3c;
+    font: 18px/1.2 'proxima-nova-soft', sans-serif;
+    font-weight: bold;
+}
+
+.card-description{
+    color: gray;
+    font: 14px/2 'proxima-nova-soft', sans-serif;
+}
+
+.thumb1{
+    background-image: url(https://placeimg.com/400/200/animals);
+}
+
+.thumb2{
+    background-image: url(https://placeimg.com/400/200/arch);
+}
+
+.thumb3{
+    background-image: url(https://placeimg.com/400/200/nature);
+}
+
+.thumb4{
+    background-image: url(https://placeimg.com/400/200/people);
+}
+
+.thumb5{
+    background-image: url(https://placeimg.com/400/200/tech);
+}
+
+.thumb6{
+    background-image: url(https://placeimg.com/640/480/any);
+}
+
+@media screen and (min-width:768px)
+{
+    .hero .headline-text{
+        font: 2.5em/1.2 Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+    }
+}
+
+@media screen and (min-width:992px)
+{
+    .hero .headline-text{
+        font: 3em/1.2 Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+    }
+}
+
+@media screen and (min-width:1200px)
+{
+    .hero .headline-text{
+        font: 4em/1.2 Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+    }
 }

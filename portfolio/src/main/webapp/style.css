@@ -4,24 +4,41 @@ html {
     padding: 0;
 }
 
-.jumbotron {
+.hero{
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/images/photos/jumbo4.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: black;
     display: flex;
     height: 100vh;
     justify-content: center;
-    position: relative;
-    width:100%;
+    width: 100%;
 }
 
-.social{
+.hero::after{
+    background: rgba(0, 0, 0, 0.5);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+.hero video{
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+}
+
+.hero .social{
     display: flex;
     position: absolute;
     right: 40px;
     top: 40px;
+    z-index: 15;
 }
 
 .icon{
@@ -34,14 +51,12 @@ html {
 .headline-text {
     border: 5px solid white;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 100px;
-    font-weight: bold;
-    height: 120px;
+    font: 2em/1.2 Arial, Helvetica, sans-serif;
+    font-weight: bolder;
     padding:40px;
-    position: absolute;
-    margin: 0;
+    position: relative;
     text-align: center;
+    z-index: 20;
 }
 
 .about {
@@ -349,4 +364,28 @@ span {
 
 .thumb6{
     background-image: url(https://placeimg.com/640/480/any);
+}
+
+@media screen and (min-width:768px)
+{
+    .hero .headline-text{
+        font: 2.5em/1.2 Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+    }
+}
+
+@media screen and (min-width:992px)
+{
+    .hero .headline-text{
+        font: 3em/1.2 Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+    }
+}
+
+@media screen and (min-width:1200px)
+{
+    .hero .headline-text{
+        font: 4em/1.2 Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+    }
 }

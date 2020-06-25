@@ -14,7 +14,10 @@
 
 
 const pictures = ["images/photos/proj1.jpg", "images/photos/proj2.jpg", "images/photos/proj3.jpg"]
+const mePics = ["url('images/photos/me2.jpeg')", "url('images/photos/me3.jpeg')", "url('images/photos/me1.jpeg')"]
+
 var currentIndex = 0;
+var currentIndex2 = 0;
 
 function nextImage(){
     currentIndex = (currentIndex + 1) % pictures.length;
@@ -25,3 +28,11 @@ function prevImage(){
     currentIndex = (currentIndex + pictures.length - 1) % pictures.length;
     document.getElementById("projectImg").src = pictures[currentIndex];
 }
+
+function autoChange (){
+    currentIndex2 ++;
+    currentIndex2 %= mePics.length;
+    document.getElementById("headshot").style.backgroundImage= mePics[currentIndex2];
+}
+
+setInterval(autoChange,5000)

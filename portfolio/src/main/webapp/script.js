@@ -13,15 +13,28 @@
 // limitations under the License.
 
 
-const pictures = ["images/photos/proj1.jpg", "images/photos/proj2.jpg", "images/photos/proj3.jpg"]
-var currentIndex = 0;
+const projects = ["images/photos/proj1.jpg", "images/photos/proj2.jpg", "images/photos/proj3.jpg"]
+const headshots = ["url('images/photos/me2.jpeg')", "url('images/photos/me3.jpeg')", "url('images/photos/me1.jpeg')"]
+
+let projectIndex = 0;
+let headshotIndex = 0;
 
 function nextImage(){
-    currentIndex = (currentIndex + 1) % pictures.length;
-    document.getElementById("projectImg").src = pictures[currentIndex];
+    projectIndex ++;
+    projectIndex %= projects.length;
+    document.getElementById("projectImg").src = projects[projectIndex];
 }
 
 function prevImage(){
-    currentIndex = (currentIndex + pictures.length - 1) % pictures.length;
-    document.getElementById("projectImg").src = pictures[currentIndex];
+    projectIndex += projects.length -1;
+    projectIndex %= projects.length;
+    document.getElementById("projectImg").src = projects[projectIndex];
 }
+
+function autoChange (){
+    headshotIndex ++;
+    headshotIndex %= headshots.length;
+    document.getElementById("headshot").style.backgroundImage= headshots[headshotIndex];
+}
+
+setInterval(autoChange,5000)

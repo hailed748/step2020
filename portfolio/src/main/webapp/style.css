@@ -102,7 +102,7 @@ html {
 .about-description {
     font: 20px/2 "Frank Ruhl Libre";
     margin: auto 200px;
-    min-width: 800px;
+    min-width: 500px;
 }
  
 .details {
@@ -133,13 +133,8 @@ html {
 }
 
 .resume {
-<<<<<<< HEAD
     background-color: #F6F6F6;
     display: flex;
-=======
-    background-color: #FBFBFB;
-    display: block;
->>>>>>> DagmDev
     font-family: "Frank Ruhl Libre";
     overflow: hidden;
     padding-left: 100px;
@@ -168,13 +163,8 @@ html {
  
 .section::before {
     box-sizing: border-box;
-<<<<<<< HEAD
     content: "";
     display: table;
-=======
-    display: table;
-    content: "";
->>>>>>> DagmDev
 }
  
 .section::after {
@@ -188,11 +178,7 @@ html {
     float: left;
     line-height: 0.25;
     position: relative;
-<<<<<<< HEAD
     width: 30%;
-=======
-    width: 40%;
->>>>>>> DagmDev
 }
  
 .info {
@@ -252,9 +238,6 @@ html {
     text-align: center;
     text-decoration: underline;
 }
- 
-<<<<<<< HEAD
-=======
  
 .photography {
     align-items: center;
@@ -321,7 +304,6 @@ html {
     margin: 0;
 }
  
->>>>>>> DagmDev
 .projects {
     background-color: #FBFBFB;
     padding: 50px 200px;
@@ -341,11 +323,7 @@ html {
 .cards {
     box-sizing: border-box;
     display: flex;
-<<<<<<< HEAD
     flex-wrap: wrap;
-=======
-    flex-wrap: wrap;    
->>>>>>> DagmDev
     justify-content: center;
     margin-top: 15px;
     padding: 20px;
@@ -425,13 +403,8 @@ span {
     background: #e74c3c;
     bottom: 0;
     color: white;
-<<<<<<< HEAD
     font: 16px/1.3 "Frank Ruhl Libre";
     font-weight: bold;
-=======
-    font: 18px/1.3 "Frank Ruhl Libre";
-    font-weight: bolder;
->>>>>>> DagmDev
     margin: 0;
     padding: 5px;
     position: absolute;
@@ -450,7 +423,6 @@ span {
  
 .card-subtitle {
     color: #e74c3c;
-<<<<<<< HEAD
     font: 16px/1.2 "Frank Ruhl Libre";
     margin: 0 auto;
 }
@@ -459,14 +431,6 @@ span {
     color: #3e3f40;
     font: 14px/2 "Frank Ruhl Libre";
     font-weight: 500;
-=======
-    font: 18px/1.2 "Frank Ruhl Libre";
-}
- 
-.card-description {
-    color: gray;
-    font: 14px/2 "Frank Ruhl Libre";
->>>>>>> DagmDev
 }
 
 .thumb1 {
@@ -580,5 +544,10 @@ span {
 {
     .resume {
         padding: 150px 150px 150px 300px;
+    }
+
+    .about-description {
+        font: 16px/2 "Frank Ruhl Libre";
+        margin: auto;
     }
 }

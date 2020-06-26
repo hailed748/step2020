@@ -121,7 +121,7 @@ html {
 .resume {
     background-color: #FBFBFB;
     display: block;
-    font-family: "Frank Ruhl Libre"
+    font-family: "Frank Ruhl Libre";
     overflow: hidden;
     padding: 50px 600px 150px;
 }
@@ -133,8 +133,8 @@ html {
  
 .resume::after {
     clear: both;
-    display: table;
     content: "";
+    display: table;
 }
  
 .resume-container {
@@ -148,23 +148,23 @@ html {
 }
  
 .section::before {
-    display:table;
-    content: "";
     box-sizing: border-box;
+    display: table;
+    content: "";
 }
  
 .section::after {
+    box-sizing: border-box;
     clear: both;
     content: "";
     display: table;
-    box-sizing: border-box;
 }
  
 .header {
     float: left;
+    line-height: 0.25;
     position: relative;
     width: 40%;
-    line-height: 0.25;
 }
  
 .info {
@@ -186,9 +186,9 @@ html {
 }
  
 .resume h2 {
+    color: darkgoldenrod;
     font: 40px/2 "Frank Ruhl Libre";
     font-weight: bold;
-    color: darkgoldenrod;
     margin: 20px auto;
 }
  
@@ -202,9 +202,9 @@ html {
 }
  
 .courses {
-    margin-right:100px;
-    line-height: 2;
     font-size: 18px;
+    line-height: 2;
+    margin-right: 100px;
 }
  
 .courses p {
@@ -246,9 +246,9 @@ html {
 }
  
 .grid-pic {
-    display: block;
     border-radius: 5px;
-    height:100%;
+    display: block;
+    height: 100%;
     margin: 0;
     object-fit: cover;
     width: 100%;
@@ -298,17 +298,17 @@ html {
  
 .container {
     display: block;
-    max-width: 1600px;
     margin: auto;
+    max-width: 1600px;
 }
  
 .cards {
+    box-sizing: border-box;
     display: flex;
+    flex-wrap: wrap;    
     justify-content: center;
-    flex-wrap: wrap;
     margin-top: 15px;
     padding: 20px;
-    box-sizing: border-box;
 }
  
 .card {
@@ -385,7 +385,7 @@ span {
     background: #e74c3c;
     bottom: 0;
     color: white;
-    font: 18px/1.3 700 'Frank Ruhl Libre';
+    font: 18px/1.3 "Frank Ruhl Libre";
     font-weight: bolder;
     margin: 0;
     padding: 0;
@@ -397,7 +397,7 @@ span {
  
 .card-title {    
     color: #3e3f40;
-    font: 24px/1.2 500 'Frank Ruhl Libre';
+    font: 24px/1.2 "Frank Ruhl Libre";
     font-weight: 600;
     margin: 0;
     padding: 0 0 10px;
@@ -405,12 +405,12 @@ span {
  
 .card-subtitle {
     color: #e74c3c;
-    font: 18px/1.2  300 'Frank Ruhl Libre';
+    font: 18px/1.2 "Frank Ruhl Libre";
 }
  
 .card-description {
     color: gray;
-    font: 14px/2 'PFrank Ruhl Libre";
+    font: 14px/2 "Frank Ruhl Libre";
 }
  
 .thumb1 {

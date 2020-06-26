@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+# Caring Cart 
+## Group Members:
+Jasmin Bouzarouata - jasminb@mit.edu
+
+Adina Golden - adinag@mit.edu
+
+Dagmawi Haile - dagmawi@mit.edu
+
+Meesue Kim - meesue@mit.edu
+
+Mikael Nida - mikaeln@mit.edu
+
+## Project Summary
+CaringCart is a neighborhood grocery shopping system that can be used to have communities shop for each other in times of need or just to be a friendly neighbor. Our platform is essentially a board of groceries list requests from people within your community. If someone is already at the supermarket and they see a request from a community member on the CaringCart system, they can shop for the items on the list and drop them off. Once the order is complete, the shopper can then use our system to request the total amount of money from that person. 
+
+## Project Overview
+
+### All Users
+A user will first use the keypad to enter a unique username and email address. This information will be held in our database and will be used to re-sign into their account. Next, an address will be displayed. If it matches their current location, they confirm, and continue to the Main Menu, otherwise, they select another address. Once on the main page, the user will have access to five tabs: Request Item, Shop, Pay, Current Order, and History. All users may check their top 5 purchased items on the HISTORY page. The user’s current balance is also viewable from the main page. 
+
+
+### Requester
+For the requester side, the user will primarily interact with the REQUEST section. There, the customer can build their list by speaking into the microphone. The user will specify an action, item, or quantity, and then confirm what the microphone picked up, or restate it. When the customer wants to add an item to their cart, they will use the keyword “add”, and then state the item name and quantity. To remove, they use the “remove” keyword and follow the same process as adding an item. If the user wants to completely empty their cart, they use the “empty” keyword. Once done building their list, the customer can use the “terminate” keyword to send their information to the database. 
+
+### Shopper
+To shop for others, the user must enter the SHOP page. If a shopper has already confirmed a grocery list for a user, they will not be allowed to view the next page. Otherwise, the page displays 4 different usernames of requesters within a 5 mile radius of the shopper. The shopper may view and select a requester’s grocery list, confirming that they will buy the items on that list.
+
+The shopper may view their status in the CURRENT ORDER page. This page allows a shopper to check who they have confirmed to buy groceries for and the requester’s address. If the shopper has not confirmed anyone yet, then clicking into this menu option will let them know.
+
+
+Once a shopper buys the items from their selected list, they use the PAY page. They use the keypad to enter the total price of the items bought. This sends an invoice to the requester’s email. Current balance of the shoppers and requesters are updated accordingly.  
+
+## Video Demo
+<iframe src="https://drive.google.com/file/d/1Kv6d05ekc2zL6W1ehkrUkzA-5LgS8nMK/preview" width="640" height="480"></iframe>
+
+## State Machines & System Diagrams
+
+### Main Finite State Machine
+<iframe src="https://drive.google.com/file/d/1jbcMpvr8kQ2yHUwsqnMjtO9xRW8tD17G/preview" width="640" height="480"></iframe>
+
+
+### Keypad System Diagram  & FSM
+<iframe src="https://drive.google.com/file/d/1iGpRFHkqUW_4O3zsdV8ZhE3RY5db3xuh/preview" width="640" height="480"></iframe>
+
+<iframe src="https://drive.google.com/file/d/1MgqIBBoPtNieRnCFaQaLusXtLSjGKo45/preview" width="640" height="480"></iframe>
+
+## Parts and APIs
+### Parts
+- ESP32
+- Breadboard
+- Microphone
+- 1.4" TFT LCD Screen
+- 4x4 Keypad
+### APIs
+- Google Maps API
+- Google Speech API
+- Stripe Payment API
+
+## Design Challenges and Solutions
+1. GPS Accuracy/Connectivity Issues:
+
+   Initially, we believed the GPS would not be able to determine our latitude and longitude inside our houses without a signal booster, but in most cases, it picked up our coordinates but with a small margin of error. This served as an issue as when someone delivers your groceries they need your exact location. To solve this we used the Google Maps API to convert the coordinates into possible addresses near a given a coordinate. Then we allowed the user to cycle through these potential addresses until they found theirs.  
+
+2. User Payment:
+   
+   When we first started we knew a large issue would be creating a secure payment system. In order to ensure a secure system we looked into numerous payment APIs but soon realized that in order to actually have a transfer of money users would need to input confidential information such as SSN numbers into the ESP and we did not feel confident in our ability to keep this data safe with our current skill set. In order to solve this issue, we pivoted to a double-entry bookkeeping invoice system. Essentially when a shopper fulfills an order the requester gets an invoice for the purchase amount and the requester gets CarringCart account balance of equivalent amount with an invoice confirming this.
+
+3. Speech Detection Accuracy:
+
+   After testing with the speech API we realized that an 8000hz sampling rate led to inconsistency in accuracy when using the Google Speech API to input items for the grocery list. Due to limited memory, we could not simply increase the sampling rate thus we were forced to create a different solution. In order to make the shopping stage more consistent, we created a confirmation page for anything controlled by the Google API. This enabled users to see the result the API picked up and allowed them to confirm if it was correct or simply state the request again. 
+
+## The Database
+
+### grocN (ccGETRH) 
+
+| USER     | ITEMS                                  | LAT        | LON       | TIMING              | EMAIL             | ADDRESS                                     |
+|----------|----------------------------------------|------------|-----------|---------------------|-------------------|---------------------------------------------|
+| “JASMIN” | “{“eggs”: 3, “milk”: 2,  “bagels”: 4}” | -71.095863 | 42.357307 | 2020-04-10 9:10:08  | “JASMINB@MIT.EDU” | “84 Massachusetts Ave, Cambridge, MA 02139” |
+| “PERSON” | “{“carrots”:  1, “orange juice” : 2}”  | -71.097730 | 42.359075 | 2020-05-12 10:11:12 | “RANDO@MIT.EDU”   | “32 Vassar St, Cambridge, MA 02139          |
+
+
+
+### workingOrders (shopperAcceptListPOST.py)
+
+| REQUESTING_USER | REQUESTING_EMAIL  | REQUESTING_ID      | SHOPPING_USER | SHOPPING_EMAIL  | SHOPPING_ID        |
+|-----------------|-------------------|--------------------|---------------|-----------------|--------------------|
+| “JASMIN”        | “JASMINB@MIT.EDU” | cus_HGOO1g5D5wqUFJ | “JOE”         | “JOE@MIT.EDU”   | cus_HGOOEQVSIBolFV |
+| “VAD”           | “DAGMAWI@MIT.EDU” | cus_HGOOEQVSIBolFV | “IAN”         | “BOB@GMAIL.COM” | cus_HGOO1g5D5wqUFJ |
+
+
+### all_customers (shopperAcceptListPOST.py, paymentPOSTapi.py)
+
+| USER     | EMAIL             | ID                 | BALANCE |
+|----------|-------------------|--------------------|---------|
+| “JASMIN” | “JASMINB@MIT.EDU” | cus_HGOO1g5D5wqUFJ | 4.00    |
+| “MIKAEL” | “MIKAELN@MIT.EDU” | cus_HGMrnujF3HCpm0 | -20.00  |
+
+
+### purchased (get_history.py)
+
+| USER     | GROCERIES                                              |
+|----------|--------------------------------------------------------|
+| “JASMIN” | “{“bread” : 24, “eggs”: 20,  “milk”: 5,  “bagels”: 4}” |
+| “PERSON” | “{“carrots”:  1, “orange juice” : 2}”                  |
+
+
+## Python API Summaries
+
+### ccGetRH
+This script is used on the requester side of our system.  When a person inputs their grocery list to their ESP32, it is sent up to this request handler in the form of a POST request along with their name, email, address, and gps coordinates.  From the POST request, the script adds the requester’s information into the grocN table of the database - adding the “add” items to the items column, and removing the “remove” items which were sent.  
+
+When a shopper wants to view the lists of the people in their area, a GET request is sent to this script with their GPS coordinates.  Using a haversine function, we select from the grocN table in the database the closest 4 users and their lists who live within a 5-mile radius of the person about to go shopping. The usernames and their lists are formatted for easy parsing once they get to the esp32.  They’re sent back in the form: 
+
+```
+User1;{apples:12,pears:3};User2;{toothpaste:7};User3;{toiletpaper:190, handsanitizer: 83};User4;{juice:5, milk:2}
+
+```
+Whenever a GET request is sent to this script, the table deletes the rows that are older than 3 days old, making sure that obsolete grocery lists are not used.
+
+### shopperAcceptListPOST
+When a user opens the SHOP page on the esp32 interface and confirms an order that they want to shop for, a POST request is sent to this request handler, carrying the shopper username and email, as well as the requester’s username that they just confirmed. Then we look up the requester’s username using the grocN table and then if either of the users are new, we create their user ID’s using the Stripe api and we store their username, email, ID, and initial balance of zero in a table called all_customers. This table stores every customer that has ever had a working order in the system. Next, we insert the username, email and ID of both users into the workingOrders which keeps track of the current open orders between two customers. If a shopper already has an order in the workingOrders table then we don’t insert the new order into the working orders and we return that an order is in progress, otherwise the order is successfully confirmed
+
+When a user opens the CURRENT ORDER page on the esp32 interface, a GET request is sent to this script.  We search through the workingOrders table to see if the user has a current order. If they haven’t confirmed an order yet the handler sends a “No orders in progress” response.  If the user has confirmed an order then the script returns the orderer’s name, email, and address so the user can contact them or drop off the groceries.
+
+
+### paymentPOSTapi
+When a shopper confirms that they completed an order and requests payment on the esp PAY page, a POST request is sent to this script. The shopper username and amount they are charging is sent in the request. We use the workingOrders table to find the rest of the information about the order of interest. This script will use the Stripe API to send invoices through emails to both the shopper and requester. We have divided this into functions, send_debit_invoice for the requester and send_credit_invoice for the shopper. In addition we use the all_customers table to retrieve the customers current balance and then update it by subtracting by the amount due if we are applying a credit or adding by the amount due if we are applying a debit. After the invoice is sent, we call the function update_history which adds the requesting user’s grocery list (which is stored in the grocN table) to the purchased table. This keeps track of the history of a user’s purchases. Then the order is deleted from the workingOrders table.
+
+When a user confirms their address, right before they are taking to the Caring Cart main menu the esp sends a get request to this file to obtain the current balance of the user. In the request it only sends the username, which the api then uses to find the balance in the all_customers table. If the user doesn’t exist in the table, then it means they haven’t had any working orders so their balance is returned as $0.00, otherwise the balance found in the table is returned. This balance is then displayed in the main menu on the esp.
+
+### GPSAPI
+Created a request handler that takes in lat and lon as parameters and retrieves information from the Google Maps API. Since the API passes in a JSON file containing more information than we need for this app, we extracted only the formatted_addresss, formatted it in a way that the ESP code can parse and returned it. Pretty straight forward code, which can be seen below. 
+
+### get_history
+
+ This script contains a request handler that gets a user’s history given their username as a parameter. A query into the “purchased” table gets the dictionary of all grocery items to quantities of all items ever bought. The dictionary is then sorted descending item quantity. The 5 items with the greatest quantities are returned as a string to be processed and displayed on the HISTORY page of the ESP. However, if the user has no history,  “No history yet” is returned.
+
+## Key Arduino Code
+Install the Keypad Library named Keypad by Mark Stanley and Alexander Brevig.
+
+The value of each button was stored in a 4x4 matrix named `keys`.
+```C++
+char keys[ROWS][COLS] = {
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'}
+};
+```
+To switch between letters in the flip-phone fashion, we used a Finite State Machine. There are two states:
+
+**State 0** is for when `prevPress` is currently empty. This means that there is no button being pressed that causes changes in letters. For example, when *, 0, or # are pressed, then the machine goes to state 0. If a switching button is pressed, then the machine goes to state 1.
+
+**State 1** is for the buttons that cause changes in letters and for special characters. In this state, there is a `prevPress` variable that stores the current button that is being pressed to switch between letters. Once a key reading gives a value that does not match `prevPress`, the machine checks to see if the current reading is another key that is used for switching. If it is, then a new `prevPress` is set and the machine stays in state 1. If not, then the machine goes to state 0. In the case that the user wants to use a switching key twice in a row, there is a timer that keeps track of how long it has been since a key has last been pressed. If mor than a second has passed, then that input is set and the machine moves onto the next value.
+
+There are four special characters (these might change later):
+- 'A': this is used to set the current array of characters as the username
+- 'B': this is used as a backspace
+- 'C': this is used to clear the character array and start over
+- 'D': this is used to set the current character array as the email or to input a price for the pay page
+
+The user input is stored in a character array called `output`, and is updated with every input. In the case of switching between letters, the current index in the array is kept track of and only the letter stored at the current index changes. Once the value is set, the machine goes onto the next index. 
+
+## Weekly Videos
+### Week 1
+**POST Request Handler:**
+<iframe src="https://drive.google.com/file/d/13ehLVmhXJNBgquQli8tgkgFreqrpZVDa/preview" width="640" height="480"></iframe>
+This video shows the handling of the POST request when the ESP sends the request data to the server side. Again, this was expanded on throughout the project and other parameters were added to better fit the scope of the project.
+
+**GET Request Handler:**
+<iframe src="https://drive.google.com/file/d/1PXV-N12xt5N7BUNiQ0ExnGjJxBKHnmF4/preview" width="640" height="480"></iframe>
+This photo shows the response of the GET request that is sent from the esp32 to the server when a user enters the SHOP page.  This response has the usernames and lists of the 4 most recent people to send their lists to the server.  This picture is of our initial formatting of the GET response (users and their items separated by “;” and the next user and previous items only separated by “ “, which we changed throughout the weeks to better work with our system (users and items all separated by “;”).
+
+**Visuals:**
+<iframe src="https://drive.google.com/file/d/194YvBcGHazk2nzeDe_eCfLB52UDGx5n3/preview" width="640" height="480"></iframe>
+This FSM shows the current states that have been implemented for this week. This was expanded on throughout the project.
+
+**Google Speech API:**
+<iframe src="https://drive.google.com/file/d/1T_bxACeFCT98rQlj-bsP-hwHPwDaaBhp/preview" width="640" height="480"></iframe>
+
+This week we created the bulk of the requester side of the project. The video shows the username sign in option which is done via voice. Requesting is a two list approach in which you use the keyword “add “to build up the list, first using voice to select an item then to select a quantity. Similarly, the keyword “remove” is used to select the item and quantity you want to remove. Then at the end “terminate” is said to send the request. 
+
+### Week 2
+**Keypad:**
+<iframe src="https://drive.google.com/file/d/1i6YffFqDyz1rCRtCBdcSNy-bphWqjWJc/preview" width="640" height="480"></iframe>
+The purpose of this video was to show the functionality of the keypad, which is used to input username, email, and price of items in the overall system. The keypad functions as an old fashioned flip phone, in which you press the same number multiple times to toggle between different letter options.
+
+**GET and POST Requests:**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Bab5G7no7Rc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+This video shows the interface and button functionality of the SHOP page on the esp32.  The purpose of the video was to show how the 3 buttons work within the SHOP page, and how users and their grocery lists are displayed when within the page.  We scrolled through the 4 closest users near us, viewed some lists, and then confirmed an order.
+
+**Shopper Side:**
+<iframe src="https://drive.google.com/file/d/1_UYFZAbsS8PJkzuXVLFR7s-Qg8pPxQEm/preview" width="640" height="480"></iframe>
+This video uses postman to show the process of an order being requested, picked up by a shopper and then finalized for payment. The purpose of the video was to show how a debit invoice could be sent out using the Stripe API. We sent a pay request that had an amount of 100, meaning $1.00, to the requester's email and then demonstrated that the email invoice system had been instantaneously sent.
+
+**User Interface:**
+<iframe src="https://drive.google.com/file/d/1gvE2E-ZyvlwQXrLSKsPT5ThkmQXMzYTc/preview" width="640" height="480"></iframe>
+
+This week we overhauled the user input to be more reliable. We concerted the username and email entry to a keypad version because it eliminated error in this part which was essential as the username and email are used for authentication. Furthermore, when adding items to your list or removing we added a second layer of confirmation to ensure the speech API picked up the right item/quantity. 
+
+### Week 3
+**Overall Sytem:**
+<iframe src="https://drive.google.com/file/d/15rZrW37fqg4CmNI0Nlxk5u2L5WbocJ5p/preview" width="640" height="480"></iframe>
+
+This is a semi-complete walkthrough of our system showing a grocery list request being submitted by a user and a shopper accepting the request and seeking repayment. There are small bugs and some of our final features our missing, but it highlights the core of our system. 
+
+### Week 4
+**Overall System:**
+<iframe src="https://drive.google.com/file/d/1vWjTCsrdMx8Kjn4n6mMmwJEoVlDqOvjh/preview" width="640" height="480"></iframe>
+
+An update on the week three video in which we show a a lot of the bugs have been removed such as the extra characters on the address selection page. Furthermore, we showcase the features not shown the prior week such as the "History" page as well as the current balance tracker.
+
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

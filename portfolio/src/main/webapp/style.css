@@ -551,3 +551,13 @@ span {
         margin: auto;
     }
 }
+
+.java-tests{
+    display: flex;
+    justify-content: center;
+    margin: 300px;
+}
+
+#NAME{
+    font-size: 40px;
+}

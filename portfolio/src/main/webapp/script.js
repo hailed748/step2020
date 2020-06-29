@@ -38,3 +38,9 @@ function autoChange (){
 }
 
 setInterval(autoChange,5000)
+
+function getName() {
+  fetch('/data').then(response => response.text()).then((name) => {
+    document.getElementById('NAME').innerText = name;
+  });
+}

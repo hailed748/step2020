@@ -49,13 +49,13 @@ function makeList(){
     fetch("/data").then(response => response.json()).then((wordList) => {
         const buildList = document.getElementById("make-me");
         buildList.innerHTML = "";
-        buildList.appendChild(createli(wordList[0]));
-        buildList.appendChild(createli(wordList[1]));
-        buildList.appendChild(createli(wordList[2]));
+        for(let i = 0; i < wordList.length; i++){
+            buildList.appendChild(createListItem(wordList[i]));
+        }
     });
 }
 
-function createli(text) {
+function createListItem(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;

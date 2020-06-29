@@ -37,10 +37,10 @@ function autoChange (){
     document.getElementById("headshot").style.backgroundImage= headshots[headshotIndex];
 }
 
-setInterval(autoChange,5000)
+setInterval(autoChange, 5000);
 
 function getName() {
-  fetch('/data').then(response => response.text()).then((name) => {
+  fetch("/data").then(response => response.text()).then((name) => {
     document.getElementById('NAME').innerText = name;
   });
 }

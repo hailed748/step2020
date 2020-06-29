@@ -552,12 +552,12 @@ span {
     }
 }
 
-.java-tests{
+.java-tests {
     display: flex;
     justify-content: center;
     margin: 300px;
 }
 
-#NAME{
+#name {
     font-size: 40px;
 }

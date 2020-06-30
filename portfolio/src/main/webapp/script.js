@@ -39,6 +39,14 @@ function autoChange (){
 
 setInterval(autoChange, 5000);
 
+function loadComments() {
+    fetch("/data").then(response => response.json()).then((log) => {
+        const historyElement = document.getElementById("history");
+        log.history.forEach((line) => {
+            historyElement.appendChild(createListItem(line));
+        });
+    });
+}
 
 function createListItem(text) {
   const liElement = document.createElement('li');

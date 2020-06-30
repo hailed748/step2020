@@ -13,11 +13,11 @@
 // limitations under the License.
 
 package com.google.sps.data;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommentLog {
-
   private final List<String> history = new ArrayList<>();
 
   public void logComment(String comment) {

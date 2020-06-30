@@ -41,6 +41,22 @@ setInterval(autoChange, 5000);
 
 function getName() {
   fetch("/data").then(response => response.text()).then((name) => {
-    document.getElementById('NAME').innerText = name;
+    document.getElementById('name').innerText = name;
   });
+}
+
+function makeList(){
+    fetch("/data").then(response => response.json()).then((wordList) => {
+        const buildList = document.getElementById("make-me");
+        buildList.innerHTML = "";
+        for(let i = 0; i < wordList.length; i++){
+            buildList.appendChild(createListItem(wordList[i]));
+        }
+    });
+}
+
+function createListItem(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }

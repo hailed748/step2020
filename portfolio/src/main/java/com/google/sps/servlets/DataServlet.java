@@ -13,10 +13,10 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
-import com.google.sps.data.CommentLog;
-import java.util.ArrayList;
-import java.util.List;
-import com.google.gson.Gson;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,25 +27,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private CommentLog chatLog = new CommentLog();
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json");
-    String json = new Gson().toJson(chatLog);
-    response.getWriter().println(json);
-  }
-
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String currentComment = request.getParameter("comment");
-    chatLog.logComment(currentComment);
-    response.sendRedirect("/index.html");
-  }
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    String comment = request.getParameter("comment");
+    long timestamp = System.currentTimeMillis();
 
-  private String convertToJson(List words) {
-    Gson gson = new Gson();
-    String json = gson.toJson(words);
-    return json;
+    Entity taskEntity = new Entity("Comment");
+    taskEntity.setProperty("comment", comment);
+    taskEntity.setProperty("timestamp", timestamp);
+    datastore.put(taskEntity);
+    response.sendRedirect("/index.html");
   }
 }

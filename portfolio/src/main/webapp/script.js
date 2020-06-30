@@ -39,24 +39,18 @@ function autoChange (){
 
 setInterval(autoChange, 5000);
 
-function getName() {
-  fetch("/data").then(response => response.text()).then((name) => {
-    document.getElementById('name').innerText = name;
-  });
-}
-
-function makeList(){
-    fetch("/data").then(response => response.json()).then((wordList) => {
-        const buildList = document.getElementById("make-me");
-        buildList.innerHTML = "";
-        buildList.appendChild(createli(wordList[0]));
-        buildList.appendChild(createli(wordList[1]));
-        buildList.appendChild(createli(wordList[2]));
+function addComment() {
+    fetch("/data").then(response => response.json()).then((log) => {
+        const historyElement = document.getElementById("history");
+        log.history.forEach((line) => {
+            historyElement.appendChild(createListItem(line));
+        });
     });
 }
 
-function createli(text) {
+function createListItem(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
 }
+

@@ -51,5 +51,3 @@ function createListItem(text) {
   liElement.innerText = text;
   return liElement;
 }
-
-

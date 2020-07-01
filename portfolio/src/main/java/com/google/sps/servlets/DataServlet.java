@@ -14,10 +14,18 @@
 
 package com.google.sps.servlets;
 
+import java.sql.Timestamp;    
+import java.util.Date;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,13 +38,36 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = request.getParameter("comment");
-
+    Timestamp ts = new Timestamp(System.currentTimeMillis()); 
+    Date date = new Date(ts.getTime());
     Entity taskEntity = new Entity("comment");
     taskEntity.setProperty("text", comment);
+    taskEntity.setProperty("timestamp", date);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
-
     response.sendRedirect("/index.html");
+  }
+
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("comment").addSort("timestamp", SortDirection.DESCENDING);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    List<Object> commentList = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      List<Object> commentItem = new ArrayList<>();
+      String currentComment = (String) entity.getProperty("text");
+      Date timestamp = (Date) entity.getProperty("timestamp");
+      commentItem.add(currentComment);
+      commentItem.add(timestamp);
+      commentList.add(commentItem);
+    }
+
+    Gson gson = new Gson();
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(commentList));
   }
 }

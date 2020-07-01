@@ -40,11 +40,9 @@ function autoChange (){
 setInterval(autoChange, 5000);
 
 function loadComments() {
-    fetch("/data").then(response => response.json()).then((log) => {
+    fetch("/data").then(response => response.json()).then((commentList) => {
         const historyElement = document.getElementById("history");
-        log.history.forEach((line) => {
-            historyElement.appendChild(createListItem(line));
-        });
+        for(let comment of commentList) { historyElement.appendChild(createListItem(comment[0]+","+comment[1])) }
     });
 }
 

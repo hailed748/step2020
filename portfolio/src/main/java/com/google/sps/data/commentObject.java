@@ -25,18 +25,14 @@ public class commentObject {
     Date timestamp;
     String strDate;
 
-    public void setComment(String newComment){
+    public commentObject(String newComment, Date newTime) {
         comment = newComment;
-    }
-    
-    public String getComment(){
-        return comment;
-    }
-
-    public void setDateTime(Date newTime){
         timestamp = newTime;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");  
         strDate = dateFormat.format(newTime);  
+    }
+    public String getComment(){
+        return comment;
     }
 
     public Date getTime(){

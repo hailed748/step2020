@@ -41,8 +41,12 @@ setInterval(autoChange, 5000);
 
 function loadComments() {
     fetch("/data").then(response => response.json()).then((commentList) => {
+        console.log(commentList);
         const historyElement = document.getElementById("history");
-        for(let comment of commentList) { historyElement.appendChild(createListItem(comment[0]+","+comment[1])) }
+        for(let comment of commentList) { 
+            let commentObject = JSON.parse(comment);
+            historyElement.appendChild(createListItem(commentObject.comment + ", " + commentObject.date)); 
+        }
     });
 }
 

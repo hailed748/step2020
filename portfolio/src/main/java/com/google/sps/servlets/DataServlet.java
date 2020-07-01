@@ -14,6 +14,7 @@
 
 package com.google.sps.servlets;
 
+import com.google.sps.data.CommentLog;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
@@ -27,21 +28,20 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private List<String> words;
-
-  @Override
-  public void init() {
-    words = new ArrayList<String>();
-    words.add("Hello");
-    words.add("Cheese");
-    words.add("Phone");
-  }
+  private CommentLog chatLog = new CommentLog();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = convertToJson(words);
-    response.setContentType("application/json;");
+    response.setContentType("application/json");
+    String json = new Gson().toJson(chatLog);
     response.getWriter().println(json);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String currentComment = request.getParameter("comment");
+    chatLog.logComment(currentComment);
+    response.sendRedirect("/index.html");
   }
 
   private String convertToJson(List words) {

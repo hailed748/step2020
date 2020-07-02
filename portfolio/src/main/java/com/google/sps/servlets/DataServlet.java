@@ -22,6 +22,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.FetchOptions;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -59,16 +60,17 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String commentCount = request.getParameter("quantity");
+    int commentCountInt = Integer.parseInt(commentCount);
     Query query = new Query("comment").addSort("timestamp", SortDirection.DESCENDING);
-
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
 
+    List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(commentCountInt));
     List<String> commentList = new ArrayList<>();
-    
-    for (Entity entity : results.asIterable()) {
-      String currentComment = (String) entity.getProperty("commentObject");
-      commentList.add(currentComment);
+
+    for (Entity entity : results) {
+        String currentComment = (String) entity.getProperty("commentObject");
+        commentList.add(currentComment);
     }
 
     String commentListJSON = makeJSON(commentList);

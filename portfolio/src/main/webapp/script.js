@@ -13,23 +13,8 @@
 // limitations under the License.
 
 
-const projects = ["images/photos/proj1.jpg", "images/photos/proj2.jpg", "images/photos/proj3.jpg"]
 const headshots = ["url('images/photos/me2.jpeg')", "url('images/photos/me3.jpeg')", "url('images/photos/me1.jpeg')"]
-
-let projectIndex = 0;
 let headshotIndex = 0;
-
-function nextImage(){
-    projectIndex ++;
-    projectIndex %= projects.length;
-    document.getElementById("projectImg").src = projects[projectIndex];
-}
-
-function prevImage(){
-    projectIndex += projects.length -1;
-    projectIndex %= projects.length;
-    document.getElementById("projectImg").src = projects[projectIndex];
-}
 
 function autoChange (){
     headshotIndex ++;
@@ -40,13 +25,25 @@ function autoChange (){
 setInterval(autoChange, 5000);
 
 function loadComments() {
-    fetch("/data").then(response => response.json()).then((commentList) => {
-        console.log(commentList);
+    let root = document.getElementById("history");
+    while(root.firstChild ){root.removeChild( root.firstChild );}
+
+    let commentCount;
+    commentCount = document.getElementById("quant").value;
+
+    fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {
         const historyElement = document.getElementById("history");
         for(let comment of commentList) { 
             let commentObject = JSON.parse(comment);
             historyElement.appendChild(createListItem(commentObject.comment + ", " + commentObject.date)); 
         }
+    });
+}
+
+function deleteComments(){
+    fetch(`/delete-data`,{method:"POST"}).then(response => response.text()).then((confirmation) => {
+        loadComments();
+        console.log(confirmation);
     });
 }
 

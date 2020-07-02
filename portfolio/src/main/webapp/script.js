@@ -26,7 +26,7 @@ setInterval(autoChange, 5000);
 
 function loadComments() {
     let root = document.getElementById("history");
-    while(root.firstChild ){root.removeChild( root.firstChild );}
+    while(root.firstChild){root.removeChild(root.firstChild);}
 
     let commentCount;
     commentCount = document.getElementById("quant").value;

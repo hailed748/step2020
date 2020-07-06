@@ -12,24 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-const projects = ["images/photos/proj1.jpg", "images/photos/proj2.jpg", "images/photos/proj3.jpg"]
 const headshots = ["url('images/photos/me2.jpeg')", "url('images/photos/me3.jpeg')", "url('images/photos/me1.jpeg')"]
 
 let projectIndex = 0;
 let headshotIndex = 0;
-
-function nextImage(){
-    projectIndex ++;
-    projectIndex %= projects.length;
-    document.getElementById("projectImg").src = projects[projectIndex];
-}
-
-function prevImage(){
-    projectIndex += projects.length -1;
-    projectIndex %= projects.length;
-    document.getElementById("projectImg").src = projects[projectIndex];
-}
 
 function autoChange (){
     headshotIndex ++;
@@ -45,7 +31,8 @@ function loadComments() {
         const historyElement = document.getElementById("history");
         for(let comment of commentList) { 
             let commentObject = JSON.parse(comment);
-            historyElement.appendChild(createListItem(commentObject.comment + ", " + commentObject.date)); 
+            let commentDate = new Date(commentObject.time);
+            historyElement.appendChild(createListItem(commentObject.comment + ", " + commentDate)); 
         }
     });
 }

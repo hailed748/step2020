@@ -16,20 +16,14 @@ package com.google.sps.data;
 
 import java.sql.Timestamp;    
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat; 
-
 
 public class commentObject {
     String comment;
     Date timestamp;
-    String strDate;
 
     public commentObject(String newComment, Date newTime) {
         comment = newComment;
         timestamp = newTime;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");  
-        strDate = dateFormat.format(newTime);  
     }
     public String getComment(){
         return comment;
@@ -37,10 +31,6 @@ public class commentObject {
 
     public Date getTime(){
         return timestamp;
-    }
-
-    public String getDate(){
-        return strDate;
     }
 }
 

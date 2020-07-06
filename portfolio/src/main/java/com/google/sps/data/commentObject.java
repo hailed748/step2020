@@ -14,13 +14,23 @@
 
 package com.google.sps.data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;    
+import java.util.Date;
 
-public class CommentLog {
-  private final List<String> history = new ArrayList<>();
+public class commentObject {
+    String comment;
+    Date timestamp;
 
-  public void logComment(String comment) {
-    history.add(comment);
-  }
+    public commentObject(String newComment, Date newTime) {
+        comment = newComment;
+        timestamp = newTime;
+    }
+    public String getComment(){
+        return comment;
+    }
+
+    public Date getTime(){
+        return timestamp;
+    }
 }
+

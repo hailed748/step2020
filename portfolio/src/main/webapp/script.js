@@ -35,6 +35,7 @@ function loadComments() {
         const historyElement = document.getElementById("history");
         for(let comment of commentList) { 
             let commentObject = JSON.parse(comment);
+            console.log(comment);
             historyElement.appendChild(createListItem(commentObject.comment + ", " + commentObject.date)); 
         }
     });

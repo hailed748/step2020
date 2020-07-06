@@ -25,9 +25,9 @@ function autoChange (){
 setInterval(autoChange, 5000);
 
 function loadComments() {
-    let root = document.getElementById("history");
-    while(root.firstChild){root.removeChild(root.firstChild);}
 
+    $("#history").empty();
+    // document.getElementById("history").empty();
     let commentCount = document.getElementById("quant").value;
 
     fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {
@@ -43,7 +43,6 @@ function loadComments() {
 function deleteComments(){
     fetch(`/delete-data`,{method:"POST"}).then(response => response.text()).then((confirmation) => {
         loadComments();
-        console.log(confirmation);
     });
 }
 

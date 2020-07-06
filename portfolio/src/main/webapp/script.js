@@ -28,8 +28,7 @@ function loadComments() {
     let root = document.getElementById("history");
     while(root.firstChild){root.removeChild(root.firstChild);}
 
-    let commentCount;
-    commentCount = document.getElementById("quant").value;
+    let commentCount = document.getElementById("quant").value;
 
     fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {
         const historyElement = document.getElementById("history");

@@ -13,8 +13,6 @@
 // limitations under the License.
 
 const headshots = ["url('images/photos/me2.jpeg')", "url('images/photos/me3.jpeg')", "url('images/photos/me1.jpeg')"]
-
-let projectIndex = 0;
 let headshotIndex = 0;
 
 function autoChange (){
@@ -26,14 +24,22 @@ function autoChange (){
 setInterval(autoChange, 5000);
 
 function loadComments() {
-    fetch("/data").then(response => response.json()).then((commentList) => {
-        console.log(commentList);
+    document.getElementById("history").innerHTML = "";
+    let commentCount = document.getElementById("quant").value;
+
+    fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {
         const historyElement = document.getElementById("history");
         for(let comment of commentList) { 
             let commentObject = JSON.parse(comment);
             let commentDate = new Date(commentObject.time);
             historyElement.appendChild(createListItem(commentObject.comment + ", " + commentDate)); 
         }
+    });
+}
+
+function deleteComments(){
+    fetch(`/delete-data`,{method:"POST"}).then(response => response.text()).then(() => {
+        loadComments();
     });
 }
 

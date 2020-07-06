@@ -24,9 +24,7 @@ function autoChange (){
 setInterval(autoChange, 5000);
 
 function loadComments() {
-
-    $("#history").empty();
-    // document.getElementById("history").empty();
+    document.getElementById("history").innerHTML = "";
     let commentCount = document.getElementById("quant").value;
 
     fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {

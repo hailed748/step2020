@@ -38,7 +38,7 @@ function loadComments() {
 }
 
 function deleteComments(){
-    fetch(`/delete-data`,{method:"POST"}).then(response => response.text()).then((confirmation) => {
+    fetch(`/delete-data`,{method:"POST"}).then(response => response.text()).then(() => {
         loadComments();
     });
 }

@@ -43,15 +43,13 @@ public class DataServlet extends HttpServlet {
     Timestamp ts = new Timestamp(System.currentTimeMillis()); 
     Date date = new Date(ts.getTime());
 
-    commentObject myComment = new commentObject();
-    myComment.setComment(comment);
-    myComment.setDateTime(date);
+    commentObject myComment = new commentObject(comment,date);
 
     String myCommentJSON = makeJSON(myComment);
 
     Entity taskEntity = new Entity("comment");
     taskEntity.setProperty("commentObject", myCommentJSON);
-    taskEntity.setProperty("timestamp",myComment.getTime());
+    taskEntity.setProperty("timestamp", myComment.getTime());
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);

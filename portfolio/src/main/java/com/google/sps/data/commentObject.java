@@ -23,8 +23,8 @@ public class commentObject {
 
     public commentObject(String newComment, Date newTime) {
         comment = newComment;
+        timestamp = newTime;
     }
-    
     public String getComment(){
         return comment;
     }

@@ -25,9 +25,7 @@ function autoChange (){
 setInterval(autoChange, 5000);
 
 function loadComments() {
-    let root = document.getElementById("history");
-    while(root.firstChild){root.removeChild(root.firstChild);}
-
+    document.getElementById("history").innerHTML = "";
     let commentCount = document.getElementById("quant").value;
 
     fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {
@@ -35,15 +33,14 @@ function loadComments() {
         for(let comment of commentList) { 
             let commentObject = JSON.parse(comment);
             let commentDate = new Date(commentObject.time);
-            historyElement.appendChild(createListItem(commentObject.comment + ", " + commentDate)); 
+            historyElement.appendChild(createListItem(commentObject.comment + ", " + commentDate + "(" + commentObject.sentiment+ ")")); 
         }
     });
 }
 
 function deleteComments(){
-    fetch(`/delete-data`,{method:"POST"}).then(response => response.text()).then((confirmation) => {
+    fetch(`/delete-data`,{method:"POST"}).then(response => response.text()).then(() => {
         loadComments();
-        console.log(confirmation);
     });
 }
 

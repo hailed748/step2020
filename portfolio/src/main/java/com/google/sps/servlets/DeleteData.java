@@ -35,9 +35,5 @@ public class DeleteData extends HttpServlet {
         Key myKey = entity.getKey();
         datastore.delete(myKey);
     }
-
-    String confirmation = "Comments Deleted";
-    response.setContentType("text/html;");
-    response.getWriter().println(confirmation);
   }
 }

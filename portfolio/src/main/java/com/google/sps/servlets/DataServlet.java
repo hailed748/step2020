@@ -50,12 +50,11 @@ public class DataServlet extends HttpServlet {
     Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
     float score = sentiment.getScore();
     languageService.close();
-    System.out.println(score);
 
 
     Timestamp ts = new Timestamp(System.currentTimeMillis()); 
     Date date = new Date(ts.getTime());
-    commentObject myComment = new commentObject(comment,date);
+    commentObject myComment = new commentObject(comment,date,score);
     String myCommentJSON = makeJSON(myComment);
 
     Entity taskEntity = new Entity("comment");

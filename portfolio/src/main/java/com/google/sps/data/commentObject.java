@@ -20,9 +20,12 @@ import java.util.Date;
 public class commentObject {
     String comment;
     Date timestamp;
+    float sentiment;
 
-    public commentObject(String newComment, Date newTime) {
+    public commentObject(String newComment, Date newTime, float score) {
         comment = newComment;
+        timestamp = newTime;
+        sentiment = score;
     }
     
     public String getComment(){
@@ -31,6 +34,10 @@ public class commentObject {
 
     public Date getTime(){
         return timestamp;
+    }
+    
+    public float getSentiment(){
+        return sentiment;
     }
 }
 

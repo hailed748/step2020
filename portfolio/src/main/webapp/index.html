@@ -198,11 +198,10 @@
       </secion>
     </div>
     <div class="java-tests">
-      <form action="/data" method="POST" name ="myForm">
+      <form action="/data" method="POST" name="myForm">
         <p>Enter a comment</p>
         <textarea name="comment"></textarea>
         <input type="submit"/>
-        <br><br>
       </form>
         <label>How Many Comment?</label>
         <select name="quantity" id="quant" onchange="loadComments()">
@@ -212,7 +211,6 @@
             <option value="15">15</option>
         </select>
       <ul id="history"></ul>
-      <br>
       <button onclick="deleteComments()">Delete Comments</button>
     </div>
   </body>

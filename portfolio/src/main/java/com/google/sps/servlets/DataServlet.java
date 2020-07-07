@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.sps.data.commentObject;  
 import com.google.appengine.api.datastore.DatastoreService;
@@ -40,11 +43,19 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = request.getParameter("comment");
+
+    //Gets sentiment score of a comment
+    Document doc = Document.newBuilder().setContent(comment).setType(Document.Type.PLAIN_TEXT).build();
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    float score = sentiment.getScore();
+    languageService.close();
+    System.out.println(score);
+
+
     Timestamp ts = new Timestamp(System.currentTimeMillis()); 
     Date date = new Date(ts.getTime());
-
     commentObject myComment = new commentObject(comment,date);
-
     String myCommentJSON = makeJSON(myComment);
 
     Entity taskEntity = new Entity("comment");

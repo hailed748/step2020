@@ -32,7 +32,7 @@ function loadComments() {
         for(let comment of commentList) { 
             let commentObject = JSON.parse(comment);
             let commentDate = new Date(commentObject.time);
-            historyElement.appendChild(createListItem(commentObject.comment + ", " + commentDate)); 
+            historyElement.appendChild(createListItem(`${commentObject.comment}, ${commentDate} (${commentObject.sentiment})`)); 
         }
     });
 }

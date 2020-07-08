@@ -54,7 +54,7 @@ public class DataServlet extends HttpServlet {
 
     Timestamp ts = new Timestamp(System.currentTimeMillis()); 
     Date date = new Date(ts.getTime());
-    commentObject myComment = new commentObject(comment,date,score);
+    commentObject myComment = new commentObject(comment, date, score);
     String myCommentJSON = makeJSON(myComment);
 
     Entity taskEntity = new Entity("comment");

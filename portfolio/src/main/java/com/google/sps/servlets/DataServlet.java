@@ -14,11 +14,14 @@
 
 package com.google.sps.servlets;
 
+import java.util.LinkedHashMap;
+import java.util.Scanner;
 import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.sps.data.commentObject;  
+import com.google.sps.data.CommentObject;  
+import com.google.sps.data.EntryObject;  
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -54,7 +57,7 @@ public class DataServlet extends HttpServlet {
 
     Timestamp ts = new Timestamp(System.currentTimeMillis()); 
     Date date = new Date(ts.getTime());
-    commentObject myComment = new commentObject(comment, date, score);
+    CommentObject myComment = new CommentObject(comment, date, score);
     String myCommentJSON = makeJSON(myComment);
 
     Entity taskEntity = new Entity("comment");
@@ -74,7 +77,7 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(commentCountInt));
-    List<String> commentList = new ArrayList<>();
+    List<Object> commentList = new ArrayList<>();
 
     for (Entity entity : results) {
         String currentComment = (String) entity.getProperty("commentObject");

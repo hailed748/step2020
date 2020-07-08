@@ -74,14 +74,13 @@ public class GraphServlet extends HttpServlet {
     response.getWriter().println(covidDataJSON);
   }
 
-
   private String makeJSON(Object changeItem){
     try {
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(changeItem);
         return jsonString;
     } catch (Exception e){
-        return "Can't convert to JSON"; 
+        return "Could not convert to JSON"; 
     }
   }
 

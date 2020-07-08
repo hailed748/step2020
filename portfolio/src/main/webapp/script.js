@@ -34,7 +34,6 @@ function loadComments() {
 
     fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {
         const historyElement = document.getElementById("history");
-        console.log(commentList);
         for(let comment of commentList) { 
             let commentObject = JSON.parse(comment);
             let commentDate = new Date(commentObject.time);

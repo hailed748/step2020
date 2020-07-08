@@ -17,12 +17,12 @@ package com.google.sps.data;
 import java.sql.Timestamp;    
 import java.util.Date;
 
-public class commentObject {
+public class CommentObject {
     String comment;
     Date timestamp;
     float sentiment;
 
-    public commentObject(String newComment, Date newTime, float score) {
+    public CommentObject(String newComment, Date newTime, float score) {
         comment = newComment;
         timestamp = newTime;
         sentiment = score;

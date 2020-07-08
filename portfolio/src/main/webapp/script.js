@@ -32,7 +32,6 @@ function loadComments() {
 
     fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {
         const historyElement = document.getElementById("history");
-        console.log(commentList);
         for(let comment of commentList) { 
             let commentObject = JSON.parse(comment);
             let commentDate = new Date(commentObject.time);
@@ -69,8 +68,6 @@ function makeGraph(){
             'width': 600,
             'height':500
         }
-        
-        console.log(gData);
 
     const chart = new google.visualization.LineChart(
         document.getElementById('chart-container'));

@@ -3,16 +3,15 @@ package com.google.sps.data;
 import java.sql.Timestamp;    
 import java.util.Date;
 
-public class entryObject {
+public class EntryObject {
     Integer year;
     Integer month;
     Integer day;
     Integer deaths;
     Integer cases;
 
-    public entryObject(Integer newYear, Integer newMonth, Integer newDay, 
+    public EntryObject(Integer newYear, Integer newMonth, Integer newDay, 
         Integer numCases, Integer numDeaths) {
-
         year = newYear;
         month = newMonth;
         day = newDay;

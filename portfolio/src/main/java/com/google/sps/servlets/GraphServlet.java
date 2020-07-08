@@ -6,8 +6,8 @@ import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.sps.data.commentObject;  
-import com.google.sps.data.entryObject;  
+import com.google.sps.data.CommentObject;  
+import com.google.sps.data.EntryObject;  
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -48,15 +48,13 @@ public class GraphServlet extends HttpServlet {
       Integer cases = Integer.parseInt(cells[1]);
       Integer deaths = Integer.parseInt(cells[2]);
 
-      entryObject newEntry = new entryObject(year, month, day, cases, deaths);
+      EntryObject newEntry = new EntryObject(year, month, day, cases, deaths);
       entryList.add(newEntry);
     }
     scanner.close();
 
-    //1500 bit limit on String objects in Datastore so had to use Text
+    // 1500 bit limit on String objects in Datastore so had to use Text
     Text dataJSON = new Text(makeJSON(entryList));
-    System.out.println(dataJSON); 
-
     Entity dataEntity = new Entity("GraphData");
     dataEntity.setProperty("dataList", dataJSON);
 
@@ -69,16 +67,12 @@ public class GraphServlet extends HttpServlet {
     Query query = new Query("GraphData");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     List<Entity> results = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(1));
-    
-    for (Entity entity : results) {
-        covidData = (Text) entity.getProperty("dataList");
-    }
+    covidData = (Text) results.get(0).getProperty("dataList");
 
     String covidDataJSON = makeJSON(covidData);
     response.setContentType("application/json;");
     response.getWriter().println(covidDataJSON);
   }
-
 
   private String makeJSON(Object changeItem){
     try {
@@ -86,7 +80,7 @@ public class GraphServlet extends HttpServlet {
         String jsonString = mapper.writeValueAsString(changeItem);
         return jsonString;
     } catch (Exception e){
-        return null; 
+        return "Could not convert to JSON"; 
     }
   }
 

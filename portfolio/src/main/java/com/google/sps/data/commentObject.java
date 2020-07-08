@@ -27,7 +27,6 @@ public class commentObject {
         timestamp = newTime;
         sentiment = score;
     }
-    
     public String getComment(){
         return comment;
     }

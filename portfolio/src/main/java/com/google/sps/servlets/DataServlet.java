@@ -95,7 +95,7 @@ public class DataServlet extends HttpServlet {
         String jsonString = mapper.writeValueAsString(changeItem);
         return jsonString;
     } catch (Exception e){
-        return null; 
+        return "Can't convert to JSON"; 
     }
   }
 }

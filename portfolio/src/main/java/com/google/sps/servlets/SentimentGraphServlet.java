@@ -6,8 +6,8 @@ import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.sps.data.commentObject;  
-import com.google.sps.data.entryObject;  
+import com.google.sps.data.CommentObject;  
+import com.google.sps.data.EntryObject;  
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -54,7 +54,7 @@ public class SentimentGraphServlet extends HttpServlet {
         String jsonString = mapper.writeValueAsString(changeItem);
         return jsonString;
     } catch (Exception e){
-        return null; 
+        return "Can't convert to JSON"; 
     }
   }
 

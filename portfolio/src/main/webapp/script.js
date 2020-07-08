@@ -53,9 +53,9 @@ function makeGraph(){
     fetch(`/graph`).then(response => response.json()).then((data) => {
         dataObject = JSON.parse(data.value);
         const gData = new google.visualization.DataTable();
-        gData.addColumn("date","Day");
-        gData.addColumn("number",'cases');
-        gData.addColumn("number","deaths");
+        gData.addColumn("date", "Day");
+        gData.addColumn("number", "cases");
+        gData.addColumn("number", "deaths");
 
         for (let entry of dataObject){
             let year = entry.year;
@@ -63,7 +63,7 @@ function makeGraph(){
             let day = entry.day;
             let cases = entry.cases;
             let deaths = entry.deaths;
-            gData.addRow([new Date(year,month,day),deaths,cases]);
+            gData.addRow([new Date(year, month, day), deaths, cases]);
         }
 
         const options = {
@@ -83,8 +83,8 @@ function makeGraph(){
 function makeSentGraph(){
     fetch(`/sentiment-graph`).then(response => response.json()).then((sentList) => {
         const data = new google.visualization.DataTable();
-        data.addColumn("date","Time");
-        data.addColumn("number","sentiment");
+        data.addColumn("date", "Time");
+        data.addColumn("number", "sentiment");
 
         for (let entry of sentList){
             let commentObject = JSON.parse(entry);

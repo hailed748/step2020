@@ -13,7 +13,9 @@
 // limitations under the License.
 
 google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {'packages':['scatter']});
 google.charts.setOnLoadCallback(makeGraph);
+google.charts.setOnLoadCallback(makeSentGraph);
 
 const headshots = ["url('images/photos/me2.jpeg')", "url('images/photos/me3.jpeg')", "url('images/photos/me1.jpeg')"]
 let headshotIndex = 0;
@@ -51,9 +53,9 @@ function makeGraph(){
     fetch(`/graph`).then(response => response.json()).then((data) => {
         dataObject = JSON.parse(data.value);
         const gData = new google.visualization.DataTable();
-        gData.addColumn('date',"Day");
-        gData.addColumn('number','cases');
-        gData.addColumn('number','deaths');
+        gData.addColumn("date","Day");
+        gData.addColumn("number",'cases');
+        gData.addColumn("number","deaths");
 
         for (let entry of dataObject){
             let year = entry.year;
@@ -65,21 +67,46 @@ function makeGraph(){
         }
 
         const options = {
-            'title': 'COVID Cases in Nevada',
-            'width': 600,
-            'height':500
+            "title": "COVID Cases in Nevada",
+            "width": 600,
+            "height":500,
+            "hAxis": {title: "Time"},
+            "vAxis": {title: "Cases/Deaths"},
         }
-        
-        console.log(gData);
 
     const chart = new google.visualization.LineChart(
-        document.getElementById('chart-container'));
+        document.getElementById("chart-container"));
     chart.draw(gData, options);
     });
 }
 
+function makeSentGraph(){
+    fetch(`/sentiment-graph`).then(response => response.json()).then((sentList) => {
+        const data = new google.visualization.DataTable();
+        data.addColumn("date","Time");
+        data.addColumn("number","sentiment");
+
+        for (let entry of sentList){
+            let commentObject = JSON.parse(entry);
+            data.addRow([new Date(commentObject.time),commentObject.sentiment]);
+        }
+
+        const options = {
+            "title": "Sentiment of Comments over Time",
+            "width": 800,
+            "height": 650,
+            "hAxis": {title: "Time", minValue: -1, maxValue: 1},
+            "vAxis": {title: "Sentiment", minValue: -1, maxValue: 1},
+        }
+
+    const chart = new google.charts.Scatter(
+        document.getElementById("chart-container-sent"));
+    chart.draw(data, options);
+    });
+}
+
 function createListItem(text) {
-  const liElement = document.createElement('li');
+  const liElement = document.createElement("li");
   liElement.innerText = text;
   return liElement;
 }

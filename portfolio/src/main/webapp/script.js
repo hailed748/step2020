@@ -14,7 +14,7 @@
 
 google.charts.load('current', {'packages':['corechart']});
 google.charts.load('current', {'packages':['scatter']});
-google.charts.setOnLoadCallback(makeGraph);
+// google.charts.setOnLoadCallback(makeGraph);
 google.charts.setOnLoadCallback(makeSentGraph);
 
 const headshots = ["url('images/photos/me2.jpeg')", "url('images/photos/me3.jpeg')", "url('images/photos/me1.jpeg')"]
@@ -26,18 +26,15 @@ function autoChange (){
     document.getElementById("headshot").style.backgroundImage= headshots[headshotIndex];
 }
 
-setInterval(autoChange, 5000);
+// setInterval(autoChange, 5000);
 
 function loadComments() {
-    document.getElementById("history").innerHTML = "";
+    document.getElementById("history-container").innerHTML = "";
     let commentCount = document.getElementById("quant").value;
 
     fetch(`/data?quantity=${commentCount}`).then(response => response.json()).then((commentList) => {
-        const historyElement = document.getElementById("history");
-        for(let comment of commentList) { 
-            let commentObject = JSON.parse(comment);
-            let commentDate = new Date(commentObject.time);
-            historyElement.appendChild(createListItem(`${commentObject.comment}, ${commentDate} (${commentObject.sentiment})`)); 
+        for (let comment of commentList){
+            createCommentItem(comment);
         }
     });
 }
@@ -66,11 +63,11 @@ function makeGraph(){
         }
 
         const options = {
-            "title": "COVID Cases in Nevada",
-            "width": 600,
-            "height":500,
-            "hAxis": {title: "Time"},
-            "vAxis": {title: "Cases/Deaths"},
+            title:"COVID Cases in Nevada",
+            width:600,
+            height:500,
+            hAxis:{title: "Time"},
+            vAxis:{title: "Cases/Deaths"},
         }
 
     const chart = new google.visualization.LineChart(
@@ -83,24 +80,24 @@ function makeSentGraph(){
     fetch(`/sentiment-graph`).then(response => response.json()).then((sentList) => {
         const data = new google.visualization.DataTable();
         data.addColumn("date", "Time");
-        data.addColumn("number", "sentiment");
+        data.addColumn("number", "Sentiment");
 
         for (let entry of sentList){
             let commentObject = JSON.parse(entry);
-            data.addRow([new Date(commentObject.time),commentObject.sentiment]);
+            data.addRow([new Date(commentObject.time), commentObject.sentiment]);
         }
 
         const options = {
-            "title": "Sentiment of Comments over Time",
-            "width": 800,
-            "height": 650,
-            "hAxis": {title: "Time", minValue: -1, maxValue: 1},
-            "vAxis": {title: "Sentiment", minValue: -1, maxValue: 1},
+            title:"Sentiment of Comments over Time",
+            width:1000,
+            height:600,
+            hAxis:{title: "Time", minValue: -1, maxValue: 1},
+            vAxis:{title: "Sentiment", minValue: -1, maxValue: 1},
         }
 
     const chart = new google.charts.Scatter(
         document.getElementById("chart-container-sent"));
-    chart.draw(data, options);
+    chart.draw(data, google.charts.Scatter.convertOptions(options));
     });
 }
 
@@ -108,4 +105,31 @@ function createListItem(text) {
   const liElement = document.createElement("li");
   liElement.innerText = text;
   return liElement;
+}
+
+function createCommentItem(comment){
+
+    const historyContainer = document.getElementById("history-container");
+    let commentObject = JSON.parse(comment);
+    let commentDate =  new Date(commentObject.time);
+    let commentItem = commentObject.comment;
+
+    commentContainer = document.createElement("div")
+    commentContainer.setAttribute("class","comment-container");
+
+    commentText = document.createElement("p");
+    commentText.setAttribute("class","comment");
+    commentText.innerHTML = commentItem;
+
+    commentTime = document.createElement("p");
+    commentTime.setAttribute("class","timestamp");
+    commentTime.innerHTML = commentDate;
+
+    commentContainer.appendChild(commentText);
+    commentContainer.appendChild(commentTime);
+    historyContainer.appendChild(commentContainer);
+
+    divider = document.createElement("hr");
+    divider.setAttribute("class","comment-divider")
+    historyContainer.appendChild(divider);
 }

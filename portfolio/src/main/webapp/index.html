@@ -12,6 +12,7 @@
   </head>
   <body onload="loadComments()">
     <div class="hero">
+      <div class="texture"></div>
       <video loop muted autoplay preload="auto"><source src="video.mp4"></video>
       <h1 class="headline-text">Dagmawi Haile</h1>
       <div class="social">
@@ -21,7 +22,7 @@
     </div>
     <div class="profile">
       <h1>About Me</h1>
-      <hr class="short">
+      <hr id="short-about">
       <div class="profile-wrapper">
        <div id="headshot"></div>
        <div class="about-description">
@@ -42,7 +43,7 @@
     <div class="resume">
       <div class="left">
         <h1>Skills & Experience</h1>
-        <hr class="short">
+        <hr id="short-resume">
         <h2>Education</h2>
         <div class"resume-container">
           <div class="header">
@@ -126,17 +127,11 @@
     </div>
     <div class="projects">
       <h1 class="titles">Projects</h1>
-      <hr id="proj">
+      <hr id="short-proj">
       <div class="container">
         <div class="cards">
           <a class="card" href="finalProj.md.html" target="_blank" >
-            <span class="card-thumbnail thumb2">
-              <span><h4 class="card-topic">School</h4></span>
-              <span class="date">
-                <h3 class="day">May</h3>
-                <h4 class="month">2020</h4>
-              </span>
-            </span>
+            <span class="card-thumbnail thumb2"></span>
             <span class="card-summary">
               <h1 class="card-title">CaringCart</h1>
               <h2 class="card-subtitle">Shopping during COVID</h2>
@@ -148,13 +143,7 @@
             </span>
           </a>
           <a class="card" href="https://solve.mit.edu/challenges/mit-ideas-social-innovation-challenge/solutions/21271" target="_blank">
-            <span class="card-thumbnail thumb1">
-              <span><h4 class="card-topic">Community</h4></span>
-              <span class="date">
-                <h3 class="day">Jan</h3>
-                <h4 class="month">2020</h4>
-              </span>
-            </span>
+            <span class="card-thumbnail thumb1"></span>
             <span class="card-summary">
               <h1 class="card-title">EDC IOT Training</h1>
               <h2 class="card-subtitle">Going back to Ethiopia</h2>
@@ -166,13 +155,7 @@
             </span>
           </a>
           <a class="card">
-            <span class="card-thumbnail thumb3">
-              <span><h4 class="card-topic">Community</h4></span>
-              <span class="date">
-                <h3 class="day">Jun</h3>
-                <h4 class="month">2019</h4>
-              </span>
-            </span>
+            <span class="card-thumbnail thumb3"></span>
             <span class="card-summary">
               <h1 class="card-title">EESSA Python Bootcamp</h1>
               <h2 class="card-subtitle">Teaching the next generation</h2>
@@ -188,7 +171,7 @@
     </div>
     <div class="photography">
       <h1 class ="titles">Photography</h1>
-      <hr id="photo">
+      <hr id="short-photo">
       <section class="masonry">
         <figure class="cell cell-1"><img class="grid-pic" src="images/photos/my1.JPG"></figure>
         <figure class="cell cell-2"><img class="grid-pic" src="images/photos/my2.JPG"></figure>
@@ -198,12 +181,18 @@
         <figure class="cell cell-6"><img class="grid-pic" src="images/photos/my7.jpg"></figure>
       </secion>
     </div>
+    <h1 class="titles">Comments</h1>
+    <hr id="short-comment">
     <div class="java-tests">
       <form action="/data" method="POST" name="myForm">
-        <p>Enter a comment</p>
-        <textarea name="comment"></textarea>
+        <textarea name="comment" class="comment-entry">Submit a comment</textarea>
         <input type="submit"/>
       </form>
+      <div class="comment-section">
+        <div id="history-container"></div>
+        <div id="chart-container-sent"></div>
+      </div>
+      <div class="controls">
         <label>How Many Comment?</label>
         <select name="quantity" id="quant" onchange="loadComments()">
             <option value="0">0</option>
@@ -211,12 +200,8 @@
             <option value="10">10</option>
             <option value="15">15</option>
         </select>
-      <ul id="history"></ul>
       <button onclick="deleteComments()">Delete Comments</button>
-      <h1>Sentiment of Comments</h1>
-      <div id="chart-container-sent"></div>
-      <br>
-      <h1>COVID in Nevada</h1>
+      </div>
       <div id="chart-container"></div>
     </div>
   </body>

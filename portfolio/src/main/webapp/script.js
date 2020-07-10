@@ -86,7 +86,7 @@ function makeSentGraph(){
 
         const options = {
             title: "Sentiment of Comments over Time",
-            width: 1000,
+            width: 600,
             height: 600,
             hAxis: {title: "Time", minValue: -1, maxValue: 1},
             vAxis: {title: "Sentiment", minValue: -1, maxValue: 1},

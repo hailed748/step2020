@@ -61,7 +61,8 @@ html {
 .headline-text {
     border: 5px solid white;
     color: white;
-    font: medium 60px/1.2 "Frank Ruhl Libre";
+    font: 2.7em/1.2 "Frank Ruhl Libre";
+    font-weight: 600;
     padding: 40px;
     position: relative;
     text-align: center;
@@ -72,12 +73,12 @@ html {
     background-color: #FBFBFB;
     display: block;
     overflow: hidden;
-    padding: 100px 400px 200px;
+    padding: 50px;
 }
  
  
 .profile h1 {
-    font: 48px/1.2 "Frank Ruhl Libre";
+    font: 40px/1.2 "Frank Ruhl Libre";
     margin: auto;
     text-align: center;
 }
@@ -85,9 +86,9 @@ html {
 .profile-wrapper {
     align-items: center;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
-    padding-top:100px
+    padding: 50px;
 }
  
 #headshot {
@@ -97,21 +98,22 @@ html {
     background-size: cover;
     border: 3px solid white; 
     border-radius: 50%; 
-    height: 400px;
+    height: 250px;
     margin-bottom: 20px;
-    min-height: 400px;
-    min-width: 400px;
-    width: 400px;
+    min-height: 250px;
+    min-width: 250px;
+    width: 250px;
 }
  
 .about-description {
-    font: 20px/2 "Frank Ruhl Libre";
-    padding-left: 150px;
-    width: 1000px;
+    font: 16px/2 "Frank Ruhl Libre";
+    margin: 0;
+    padding: 0;
+    width: 80%;
 }
  
 .details {
-    font-size: 20px;
+    font-size: 12px;
     font-weight: 100;
     line-height: 1.6;
 }
@@ -123,11 +125,12 @@ html {
 }
  
 .titles {
-    font: 48px/1.2 "Frank Ruhl Libre";
+    font: 40px/1.2 "Frank Ruhl Libre";
     font-weight: 500;
     margin: auto;
     padding: 60px 0 0;
     text-align: center;
+    text-decoration: underline;
 }
 
 .resume {
@@ -142,37 +145,32 @@ html {
 }
 
 .resume h1 {
-    font: 48px/1.2 "Frank Ruhl Libre";
+    font: 40px/1.2 "Frank Ruhl Libre";
     margin: 50px 0 0;
     text-align: center; 
 }
  
 .resume h2 {
     color: darkgoldenrod;
-    font: 40px/2 "Frank Ruhl Libre";
+    font: 32px/2 "Frank Ruhl Libre";
     font-weight: bold;
     margin: 20px 0 20px 40px;
 }
 
 .left {
     float: left;
-    width: 60%;
+    width: 100%;
     background-color:#F6F6F6;
 }
 
 .right {
-    background-image: url("images/photos/sidebanner.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    float: right;
-    width: 40%;
+    display: none;
+    width: 0%
 }
 
 .courses {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.5;
-    /* margin-right: 100px; */
 }
  
 #special{
@@ -188,7 +186,7 @@ html {
     display: grid;    
     grid-template-columns: repeat(17, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    margin: 40px;
+    margin: 0 40px;
     row-gap: 40px;
 }
 
@@ -209,7 +207,7 @@ html {
     display: grid;    
     grid-template-columns: repeat(17, 1fr);
     grid-template-rows: repeat(9, 1fr);
-    margin: 40px;
+    margin: 0 40px;
     row-gap: 40px;
 }
 
@@ -251,7 +249,7 @@ html {
  
 .projects {
     background-color: #FBFBFB;
-    padding: 50px 200px;
+    padding: 0;
 }
 
 #proj {
@@ -319,31 +317,6 @@ span {
     position: relative;
 }
  
-.date {
-    background: #e74c3c;
-    border-radius: 100%;
-    color: white;
-    font-weight: bolder;
-    height: 50px;
-    padding: 10px;
-    position: absolute;
-    right: 12px;
-    text-align: center;
-    top: 12px;
-    width: 50px;
-}
- 
-.day {
-    font-size: 20px;
-    margin: 0;
-}
-.month {
-    font-size: 16px;
-    margin: 0;
-    padding: 5px;
-    text-transform: uppercase;
-}
- 
 .card-topic {
     background: #e74c3c;
     bottom: 0;
@@ -394,14 +367,13 @@ span {
     align-items: center;
     background-color: #F6F6F6 ;
     display: block;
-    padding: 0 0 50px 0px;
+    padding: 40px;
     position: relative;
 }
 
 #photo {
     margin:0 auto;
     width: 400px;
-    
 }
  
 .masonry {
@@ -411,7 +383,7 @@ span {
     grid-template-rows: repeat(9, 1fr);
     margin: auto;
     max-height: 80vh;
-    max-width: 80vh;
+    max-width: unset;
     padding-top: 40px;
     row-gap: 40px;
 }
@@ -465,7 +437,7 @@ span {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    margin: 100px 200px;
+    margin: 50px;
 }
 
 #name {
@@ -492,19 +464,12 @@ span {
     flex-flow: row wrap;
     height: 600px;
     justify-content: flex-start;
-    margin-right: 100px;
-    margin-top: 30px;
     overflow: scroll;
-    width: 45%;
+    width: 100%;
 }
 
 #chart-container-sent {
-    align-items: center;
     display: flex;
-    height: 600px;
-    justify-content: center;
-    margin-top: 45px;
-    width: 45%;
 }
 
 .comment {
@@ -531,98 +496,10 @@ span {
     padding: 30px 0;
 }
 
-.profile #short-about {
-    margin: auto;
-    width: 200px;
-}
-
-#short-resume {
-    margin: auto;
-    width: 350px;
-}
-
-#short-proj {
-    margin: auto;
-    width: 140px;
-}
-
-#short-photo {
-    margin: auto;
-    width: 250px;
-}
-
-#short-comment {
-    margin: auto;
-    width: 190px;
+.remove {
+    display: none !important
 }
 
 .margin-fix {
     margin: auto;
-}
-
-@media screen and (min-width:765px) and (max-width:1900px)
-{
-    .hero .headline-text {
-
-    }
-
-    .resume .right {
-    }
-
-    .resume .left {
-        width: 100%;
-    }
-
-    .photography {
-    }
-
-
- 
-    .about-description {
-        font: 16px/2 "Frank Ruhl Libre";
-        margin: 0;
-        padding: 0;
-        width: 80%;
-    }
-
-    .profile {
-        padding : 50px;
-    }
-
-    .profile h1 {
-        font-size: 40px;
-    }
-
-    .profile-wrapper {
-        flex-flow: row wrap;
-        padding: 50px;
-    }
-    
-    .projects {
-        padding: 0;
-    }
-
-    .titles {
-        font-size: 40px;
-    }
-
-    .courses {
-        font-size: 14px;
-    }
-
-    .resume h2 {
-        font-size: 32px;
-    }
-
-    .resume h1 {
-        font-size: 40px;
-    }
-
-    .masonry-edu {
-        margin: 0 40px;
-    }
-
-    .masonry-exp {
-        margin: 0 40px;
-    }
 }

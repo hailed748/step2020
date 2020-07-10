@@ -14,13 +14,13 @@ html {
 }
  
 .hero::after {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     content: '';
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
-    z-index: 10;
+    z-index: 15;
 }
  
 .hero video {
@@ -31,6 +31,16 @@ html {
     top: 0;
     width: 100%;
     z-index: 5;
+}
+
+.texture {
+      width:100%;
+      height:100%;
+      position:absolute;
+      top:0;
+      left:0;
+      z-index:10;
+      background:url('../texture.png');
 }
  
 .social {
@@ -74,7 +84,7 @@ html {
  
 .short {
     margin: auto;
-    width: 450px;
+    width: 250px;
 }
  
 .profile-wrapper {
@@ -233,10 +243,9 @@ html {
 .titles {
     font: 48px/1.2 "Frank Ruhl Libre";
     font-weight: 500;
-    margin: 0px;
-    padding: 60px 0 20px;
+    margin: auto;
+    padding: 60px 0 0;
     text-align: center;
-    text-decoration: underline;
 }
  
 .photography {
@@ -255,7 +264,7 @@ html {
     margin: auto;
     max-height: 80vh;
     max-width: 80vh;
-    padding-top: 40px;
+    padding-top: 60px;
     row-gap: 40px;
 }
  
@@ -330,7 +339,7 @@ html {
 }
  
 .card {
-    background: ghostwhite;
+    background:#F6F6F6;
     border-radius: 10px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);   
     color: darkslategrey;
@@ -556,9 +565,93 @@ span {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    margin: 300px;
+    margin: 100px 200px;
 }
 
 #name {
     font-size: 40px;
+}
+
+.comment-entry {
+    width: 40%;
+}
+
+.comment-section {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.comment-container {
+    position: relative;
+    width: 100%;
+}
+
+#history-container {
+    align-items: left;
+    display: flex;
+    flex-flow: row wrap;
+    height: 600px;
+    justify-content: flex-start;
+    margin-right: 100px;
+    margin-top: 30px;
+    overflow: scroll;
+    width: 45%;
+}
+
+#chart-container-sent {
+    align-items: center;
+    display: flex;
+    height: 600px;
+    justify-content: center;
+    margin-top: 45px;
+    width: 45%;
+}
+
+.comment {
+    font-size: 14px;
+}
+
+.timestamp {
+    font-size: 10px;
+    font-weight: bold;
+    padding-right: 10px;
+    text-align: right;
+    vertical-align: text-bottom;
+}
+
+.comment-divider {
+    position: relative;
+    margin: auto 0;
+    width: 100%;
+}
+
+.controls {
+    width: 45%;
+    margin: auto 0;
+    padding: 30px 0;
+}
+
+#short-about {
+    margin: auto;
+    width: 200px;
+}
+
+#short-resume {
+    margin: auto;
+    width: 350px;
+}
+
+#short-proj {
+    margin: auto;
+    width: 140px;
+}
+
+#short-photo {
+    margin: auto;
+    width: 250px;
+}
+
+#short-comment {
+    margin: auto;
+    width: 190px;
 }

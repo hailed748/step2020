@@ -14,7 +14,6 @@
 
 google.charts.load('current', {'packages':['corechart']});
 google.charts.load('current', {'packages':['scatter']});
-// google.charts.setOnLoadCallback(makeGraph);
 google.charts.setOnLoadCallback(makeSentGraph);
 
 const headshots = ["url('images/photos/me2.jpeg')", "url('images/photos/me3.jpeg')", "url('images/photos/me1.jpeg')"]
@@ -25,8 +24,6 @@ function autoChange (){
     headshotIndex %= headshots.length;
     document.getElementById("headshot").style.backgroundImage= headshots[headshotIndex];
 }
-
-// setInterval(autoChange, 5000);
 
 function loadComments() {
     document.getElementById("history-container").innerHTML = "";
@@ -63,11 +60,11 @@ function makeGraph(){
         }
 
         const options = {
-            title:"COVID Cases in Nevada",
-            width:600,
-            height:500,
-            hAxis:{title: "Time"},
-            vAxis:{title: "Cases/Deaths"},
+            title: "COVID Cases in Nevada",
+            width: 600,
+            height: 500,
+            hAxis: {title: "Time"},
+            vAxis: {title: "Cases/Deaths"},
         }
 
     const chart = new google.visualization.LineChart(
@@ -88,11 +85,11 @@ function makeSentGraph(){
         }
 
         const options = {
-            title:"Sentiment of Comments over Time",
-            width:1000,
-            height:600,
-            hAxis:{title: "Time", minValue: -1, maxValue: 1},
-            vAxis:{title: "Sentiment", minValue: -1, maxValue: 1},
+            title: "Sentiment of Comments over Time",
+            width: 1000,
+            height: 600,
+            hAxis: {title: "Time", minValue: -1, maxValue: 1},
+            vAxis: {title: "Sentiment", minValue: -1, maxValue: 1},
         }
 
     const chart = new google.charts.Scatter(
@@ -108,7 +105,6 @@ function createListItem(text) {
 }
 
 function createCommentItem(comment){
-
     const historyContainer = document.getElementById("history-container");
     let commentObject = JSON.parse(comment);
     let commentDate =  new Date(commentObject.time);

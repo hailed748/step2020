@@ -172,7 +172,6 @@ html {
 .courses {
     font-size: 18px;
     line-height: 1.5;
-    /* margin-right: 100px; */
 }
  
 #special{
@@ -558,71 +557,4 @@ span {
 
 .margin-fix {
     margin: auto;
-}
-
-@media screen and (min-width:765px) and (max-width:1900px)
-{
-    .hero .headline-text {
-
-    }
-
-    .resume .right {
-    }
-
-    .resume .left {
-        width: 100%;
-    }
-
-    .photography {
-    }
-
-
- 
-    .about-description {
-        font: 16px/2 "Frank Ruhl Libre";
-        margin: 0;
-        padding: 0;
-        width: 80%;
-    }
-
-    .profile {
-        padding : 50px;
-    }
-
-    .profile h1 {
-        font-size: 40px;
-    }
-
-    .profile-wrapper {
-        flex-flow: row wrap;
-        padding: 50px;
-    }
-    
-    .projects {
-        padding: 0;
-    }
-
-    .titles {
-        font-size: 40px;
-    }
-
-    .courses {
-        font-size: 14px;
-    }
-
-    .resume h2 {
-        font-size: 32px;
-    }
-
-    .resume h1 {
-        font-size: 40px;
-    }
-
-    .masonry-edu {
-        margin: 0 40px;
-    }
-
-    .masonry-exp {
-        margin: 0 40px;
-    }
 }

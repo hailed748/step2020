@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dagm's Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Playfair+Display" />
+    <link rel="stylesheet" media="screen and (min-width:320px) and (max-width:760px)" href="320-760.css" />
+    <link rel="stylesheet" media="screen and (min-width:761px) and (max-width:1439px)" href="765-1440.css" />
+    <link rel="stylesheet" type="text /css" href="//fonts.googleapis.com/css?family=Playfair+Display" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Frank+Ruhl+Libre" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -13,7 +15,7 @@
   <body onload="loadComments()">
     <div class="hero">
       <div class="texture"></div>
-      <video loop muted autoplay preload="auto"><source src="video.mp4"></video>
+      <video loop muted autoplay preload="none"><source src="video.mp4"></video>
       <h1 class="headline-text">Dagmawi Haile</h1>
       <div class="social">
         <a href="https://www.linkedin.com/in/dagmawi-haile-167b1118a" target="_blank"><image class="icon" src="images/icons/in1.png"></a>
@@ -22,7 +24,7 @@
     </div>
     <div class="profile">
       <h1>About Me</h1>
-      <hr id="short-about">
+      <hr class="remove" id="short-about">
       <div class="profile-wrapper">
        <div id="headshot"></div>
        <div class="about-description">
@@ -43,19 +45,19 @@
     <div class="resume">
       <div class="left">
         <h1>Skills & Experience</h1>
-        <hr id="short-resume">
+        <hr class="remove" id="short-resume">
         <h2>Education</h2>
-        <div class"resume-container">
-          <div class="header">
+        <section class="masonry-edu">
+          <div class="cell cell-00">
             <h3>Massachusetts Institue of Techonology</h3>
             <h4>Candidate for BS in EECS</h3>
             <p>Cambridge, MA<p>
             <p>Sep 2018 - Jun 2020</p>
           </div>
-          <div class="info">
+          <div class="cell cell-01">
             <p class="courses" id="special">
               <span class="first">Coursework:</span> Mathematics for CS, Fundamentals of Python, Intro to Computational Thinking, Data Structures & Algorithims,
-              Intro Embeded Systems & IoT, Differential Equations, Clasical Mechanics, Electricity & Magnetisim
+                Intro Embeded Systems & IoT, Differential Equations, Clasical Mechanics, Electricity & Magnetisim
             </p>
             <p class="courses">
               <span class="first">Knowledgeable:</span> Python, HTML, CSS, React Native
@@ -64,17 +66,16 @@
               <span class="first">Framiliar:</span> JavaScript, GoogleFirebase, AutoCAD, Revit
             </p>
           </div>
-        </div>  
-        <hr class="long">
+        </section>
+        <hr class="remove">
         <h2>Experience</h2>
-        <div class="resume-container">
-          <div class="section">
-            <div class="header">
+        <section class="masonry-exp">
+          <div class="cell cell-11">
             <h3>Google</h3>
             <h4>STEP Intern</h4>
             <p>Jun 2020 - Sep 2020</p>
           </div>
-          <div class="info">
+          <div class="cell cell-22">
             <ul class="courses">
               <li> 
                 Completed a series of excercises spanning across HTML, CSS, JavaScript, and Java Servlets
@@ -86,14 +87,12 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div class="section">
-          <div class="header">
-            <h3>MIT Media Lab: Viral Communcations</h3>
-            <h4>Undergraduate Research Assistant</h4>
+          <div class="cell cell-33">
+            <h3>MIT Media Lab</h3>
+            <h4>Research Assistant</h4>
             <p>Jun 2019 - Aug 2019</p>
           </div>
-          <div class="info">
+          <div class="cell cell-44">
             <ul class="courses">
               <li> 
                 Devloped the user interface for a bias reducing new streamin app called Enlightened using
@@ -105,14 +104,12 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div class="section">
-          <div class="header">
-            <h3>MIT EESA Python Summer Camp</h3>
+          <div class="cell cell-55">
+            <h3>MIT EESA Python Camp</h3>
             <h4>Co-Teacher & Organizer</h4>
             <p>Jun 2019 - Aug 2019</p>
           </div>
-          <div class="info">
+          <div class="cell cell-66">
             <ul class="courses">
               <li> 
                 Created and co-taught a six-week Python bootcamp to a group of fourty students ranging from 6th-11th
@@ -120,14 +117,13 @@
               </li>
             </ul>
           </div>
-        </div>
-        </div> 
+        </section>
       </div>
       <div class="right"></div>
     </div>
     <div class="projects">
       <h1 class="titles">Projects</h1>
-      <hr id="short-proj">
+      <hr class="remove" id="short-proj">
       <div class="container">
         <div class="cards">
           <a class="card" href="finalProj.md.html" target="_blank" >
@@ -171,7 +167,7 @@
     </div>
     <div class="photography">
       <h1 class ="titles">Photography</h1>
-      <hr id="short-photo">
+      <hr class="remove" id="short-photo">
       <section class="masonry">
         <figure class="cell cell-1"><img class="grid-pic" src="images/photos/my1.JPG"></figure>
         <figure class="cell cell-2"><img class="grid-pic" src="images/photos/my2.JPG"></figure>
@@ -181,26 +177,26 @@
         <figure class="cell cell-6"><img class="grid-pic" src="images/photos/my7.jpg"></figure>
       </secion>
     </div>
-    <h1 class="titles">Comments</h1>
-    <hr id="short-comment">
+    <h1 class="remove titles">Comments</h1>
+    <hr class="remove" id="short-comment">
     <div class="java-tests">
       <form action="/data" method="POST" name="myForm">
         <textarea name="comment" class="comment-entry">Submit a comment</textarea>
         <input type="submit"/>
+        <div class="controls">
+            <label>How Many Comment?</label>
+            <select name="quantity" id="quant" onchange="loadComments()">
+                <option value="0">0</option>
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+        <button onclick="deleteComments()">Delete Comments</button>
+        </div>
       </form>
       <div class="comment-section">
         <div id="history-container"></div>
         <div id="chart-container-sent"></div>
-      </div>
-      <div class="controls">
-        <label>How Many Comment?</label>
-        <select name="quantity" id="quant" onchange="loadComments()">
-            <option value="0">0</option>
-            <option value="5" selected>5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-        </select>
-      <button onclick="deleteComments()">Delete Comments</button>
       </div>
       <div id="chart-container"></div>
     </div>

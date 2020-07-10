@@ -1,0 +1,371 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+ 
+.hero {
+    align-items: center;
+    background: black;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+}
+ 
+.hero::after {
+    background: rgba(0, 0, 0, 0.7);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 15;
+}
+ 
+.hero video {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+.texture {
+    background: url('../texture.png');
+    height: 100%;
+    left: 0;
+    position:absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+ 
+.social {
+    display: flex;
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    z-index: 15;
+}
+ 
+.icon {
+    filter: invert(100%);
+    height: 64px;
+    padding: 15px;
+    width: 64px;
+}
+ 
+.headline-text {
+    border: 5px solid white;
+    color: white;
+    font: 2em/1.2 "Frank Ruhl Libre";
+    font-weight: 600;
+    padding: 40px;
+    position: relative;
+    text-align: center;
+    z-index: 20;
+}
+ 
+.profile {
+    background-color: #FBFBFB;
+    display: block;
+    overflow: hidden;
+    padding: 5px;
+}
+ 
+ 
+.profile h1 {
+    font: 24px/1.2 "Frank Ruhl Libre";
+    margin: auto;
+    padding-top: 30px;
+    text-align: center;
+    text-decoration: underline;
+}
+ 
+.profile-wrapper {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 30px 0;
+}
+ 
+#headshot {
+    background-image: url(images/photos/me1.jpeg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 3px solid white; 
+    border-radius: 50%; 
+    height: 150px;
+    margin-bottom: 20px;
+    min-height: 150px;
+    min-width: 150px;
+    width: 150px;
+}
+ 
+.about-description {
+    font: 12px/2 "Frank Ruhl Libre";
+    margin: 0;
+    padding: 0;
+    width: 80%;
+}
+ 
+.details {
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1.6;
+}
+ 
+.first {
+    display: inline-block;
+    font-weight: bold;
+    padding-right: 5px;
+}
+ 
+.titles {
+    font: 24px/1.2 "Frank Ruhl Libre";
+    font-weight: 500;
+    margin: auto;
+    padding: 60px 0 0;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.resume {
+    display: flex;
+    background-color:#F6F6F6;
+    line-height: 1;
+    padding: 0px;
+}
+
+.resume h1 {
+    font: 24px/1.2 "Frank Ruhl Libre";
+    margin: 50px 0 0;
+    text-align: center; 
+    text-decoration: underline;
+}
+ 
+.resume h2 {
+    color: darkgoldenrod;
+    font: 18px/2 "Frank Ruhl Libre";
+    font-weight: bold;
+    margin: 40px 20px 0 20px;
+}
+
+.left {
+    float: left;
+    width: 100%;
+    background-color:#F6F6F6;
+}
+
+.right {
+    display: none;
+    width: 0%;
+}
+
+.courses {
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+}
+ 
+#special{
+    margin-top: 10px;
+}
+.courses li {
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.masonry-edu {
+    column-gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    margin: 0 20px;
+    row-gap: 40px;
+}
+
+.cell-00 {
+    grid-column: 1 / 4;
+    grid-row: 1 / 3;
+    margin: 0;
+    padding-left: 30px;
+}
+
+.cell-01 {
+    grid-column: 1 / 4;
+    grid-row: 3 / 6;
+    margin: 0;
+    align-content: center;
+    padding-left: 30px;
+}
+
+.masonry-exp {
+    column-gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    margin: 0 20px;
+    row-gap: 40px;
+}
+
+.cell-11 {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    margin: 0;
+    padding-left: 30px;
+}
+
+.cell-22 {
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+    margin: 0;
+}
+
+.cell-33 {
+    grid-column: 1 / 4;
+    grid-row: 4/5;
+    margin: 0;
+    padding-left: 30px;
+}
+
+.cell-44 {
+    grid-column: 1 / 4;
+    grid-row: 5 / 7;
+    margin: 0;
+}
+
+.cell-55 {
+    grid-column: 1 / 4;
+    grid-row: 7 / 8;
+    margin: 0;
+    padding-left: 30px;
+}
+
+.cell-66 {
+    grid-column: 1 / 4;
+    grid-row: 8 / 9;
+    margin: 0;
+}
+ 
+.resume h3 {
+    font-size: 16px;
+    margin: 15px 0 0 0;
+}
+
+.resume p {
+    font-size: 12px;
+    margin: 0;
+}
+
+.projects {
+    background-color: #FBFBFB;
+    padding: 0px;
+}
+
+.projects .container {
+    padding-top: 0;
+}
+
+#proj {
+    margin: 0 auto;
+    width: 200px;
+}
+ 
+.container {
+    display: block;
+    margin: auto;
+    max-width: 1600px;
+}
+ 
+.cards {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 20px;
+}
+ 
+.card {
+    background:#F6F6F6;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);   
+    color: darkslategrey;
+    margin: 30px 20px;
+    max-width: 380px;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+ 
+.card::after {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease-in-out;
+    z-index: -1;
+}
+ 
+.card:hover {
+    transform: scale(1.1, 1.1);
+}
+ 
+.card:hover::after {
+    opacity: 1; 
+}
+ 
+span {
+    display: block;
+}
+ 
+.card-summary {
+    padding: 20px;
+}
+
+.card-summary p {
+    font-size: 12px;
+}
+ 
+.card-thumbnail {
+    height: 0;
+}
+ 
+.card-title {    
+    color: #3e3f40;
+    font: 24px/1.2 "Frank Ruhl Libre";
+    font-weight: 600;
+    margin: 0;
+    padding: 0 0 10px;
+}
+ 
+.card-subtitle {
+    color: #e74c3c;
+    font: 16px/1.2 "Frank Ruhl Libre";
+    margin: 0 auto;
+}
+ 
+.card-description {
+    color: #3e3f40;
+    font: 14px/2 "Frank Ruhl Libre";
+    font-weight: 500;
+}
+
+.margin-fix {
+    margin: auto;
+}
+
+.java-tests {
+    display: none;
+}
+
+.photography {
+    display: none;
+}
+
+.remove {
+    display: none !important
+}

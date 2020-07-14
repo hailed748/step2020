@@ -21,98 +21,116 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public final class FindMeetingQuery {
-  public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
 
-    if(request.getDuration() > TimeRange.WHOLE_DAY.duration()){
-        return Arrays.asList();
-    }
-    if(events.size() == 0){
-        return Arrays.asList(TimeRange.WHOLE_DAY);
-    }
-
-
-    ArrayList<TimeRange> takenTimes = new ArrayList<>();
-    for(Event event : events) {
-        if(Collections.disjoint(event.getAttendees(),request.getAttendees()) == false){
-            takenTimes.add(event.getWhen());
-        }
-    }
-
-
-    System.out.println("this takentimes");
-    System.out.println(takenTimes);
-
-    int i = 0;
-    TimeRange previous = takenTimes.get(0);
-    System.out.println(previous);
-    ArrayList<TimeRange> takenTimesMerged = new ArrayList<>();
+  public ArrayList<TimeRange> getMergedTimes(ArrayList<TimeRange> takenTimes){
     Collections.sort(takenTimes, TimeRange.ORDER_BY_START);
-    System.out.println(takenTimes.size());
-    while(i < takenTimes.size()){
-        TimeRange currentRange = takenTimes.get(i);
-            System.out.println(currentRange);
-        if(currentRange.overlaps(previous) == true){
-                System.out.println("here");
+    TimeRange previous = takenTimes.get(0);
+    ArrayList<TimeRange> takenTimesMerged = new ArrayList<>();
+    for(TimeRange time: takenTimes){
+        if(time.overlaps(previous)){
             int start = previous.start();
-            int end = Math.max(currentRange.end(),previous.end());
+            int end = Math.max(time.end(),previous.end());
             previous = TimeRange.fromStartEnd(start,end,false);
-                System.out.println(previous);
-            i++;
-            if(i==takenTimes.size()){
-                takenTimesMerged.add(previous);
-            }
         }
-        else {
-            System.out.println("here2");
+        else{
             takenTimesMerged.add(previous);
-            previous = currentRange;
-            i ++;
-            if(i==takenTimes.size()){
-                takenTimesMerged.add(previous);
-            }
+            previous = time;
         }
     }
+    takenTimesMerged.add(previous);
+    return takenTimesMerged;
+  }
 
-    System.out.println("this merged");
-    System.out.println(takenTimesMerged);
-
+  public ArrayList<TimeRange> getBetweenTimes(ArrayList<TimeRange> takenTimesMerged){
     ArrayList<TimeRange> validTimes = new ArrayList<>();
+    TimeRange firstValid = takenTimesMerged.get(0);
+    TimeRange lastValid = takenTimesMerged.get(takenTimesMerged.size() - 1);
+    int first = firstValid.start();
+    int last = lastValid.end();
+    validTimes.add(TimeRange.fromStartEnd(0,first,false));
+    validTimes.add(TimeRange.fromStartEnd(last,1440,false));
+
     if(takenTimesMerged.size()>1){
-        int j = 0;
-        while(j < takenTimesMerged.size()-1){
-            TimeRange currentRange = takenTimesMerged.get(j);
-            TimeRange adjRange = takenTimesMerged.get(j+1);
+        for (int i = 0; i < takenTimesMerged.size(); i++) {
+            if(i == takenTimesMerged.size()-1){
+                break;
+            }
+            TimeRange currentRange = takenTimesMerged.get(i);
+            TimeRange adjRange = takenTimesMerged.get(i+1);
             int newStart = currentRange.end();
             int newEnd = adjRange.start();
             validTimes.add(TimeRange.fromStartEnd(newStart,newEnd,false));
-            j++;
         }
-
-        TimeRange firstValid = validTimes.get(0);
-        TimeRange lastValid = validTimes.get(validTimes.size()-1);
-        int first = firstValid.start();
-        int last = lastValid.end();
-        validTimes.add(TimeRange.fromStartEnd(0,first,false));
-        validTimes.add(TimeRange.fromStartEnd(last,1440,false));
-        System.out.println("NO WAYULD BE");
-    }else{
-        System.out.println("SHOULD BE");
-        TimeRange onlyValid = takenTimesMerged.get(0);
-        int first = onlyValid.start();
-        int last = onlyValid.end();
-        validTimes.add(TimeRange.fromStartEnd(0,first,false));
-        validTimes.add(TimeRange.fromStartEnd(last,1440,false));
     }
+    return validTimes;
+  }
 
+  public ArrayList<TimeRange> filterTimes(ArrayList<TimeRange> validTimes, MeetingRequest request){
     ArrayList<TimeRange> finalTimes = new ArrayList<>();
     for(TimeRange time : validTimes){
         if(time.duration() >= request.getDuration()){
             finalTimes.add(time);
         }
     }
-    
-    System.out.println("FINAL");
-    System.out.println(finalTimes);
+    Collections.sort(finalTimes, TimeRange.ORDER_BY_START);
     return finalTimes;
+  }
+
+  public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
+
+    if(request.getDuration() > TimeRange.WHOLE_DAY.duration()){
+        return Arrays.asList();
+    }
+
+    if(events.isEmpty()){
+        return Arrays.asList(TimeRange.WHOLE_DAY);
+    }
+
+    ArrayList<TimeRange> takenTimes = new ArrayList<>();
+    ArrayList<TimeRange> takenTimesOptional = new ArrayList<>();
+
+    for(Event event : events) {
+        if(!Collections.disjoint(event.getAttendees(),request.getAttendees())){
+            takenTimes.add(event.getWhen());
+        }
+
+        if(!Collections.disjoint(event.getAttendees(),request.getOptionalAttendees())){
+            takenTimesOptional.add(event.getWhen());
+        }
+    }
+
+    if(takenTimes.isEmpty() && takenTimesOptional.isEmpty()){
+        return Arrays.asList(TimeRange.WHOLE_DAY);
+    }
+
+    if(!takenTimes.isEmpty()){
+        ArrayList<TimeRange> takenTimesMerged = getMergedTimes(takenTimes);
+        ArrayList<TimeRange> validTimes = getBetweenTimes(takenTimesMerged);
+        ArrayList<TimeRange> finalTimes = filterTimes(validTimes, request);
+
+        ArrayList<TimeRange> remove = new ArrayList<>();
+
+        for(TimeRange optional: takenTimesOptional){
+            for(TimeRange mandatory: finalTimes){
+                if(mandatory.overlaps(optional)){
+                    remove.add(mandatory);
+                }
+            }
+        }
+
+        if(remove.size()!= finalTimes.size()){
+            finalTimes.removeAll(remove);
+            return finalTimes;
+        }
+        else {
+            return finalTimes;
+        }
+    }
+    else{
+        ArrayList<TimeRange> takenTimesMerged = getMergedTimes(takenTimesOptional);
+        ArrayList<TimeRange> validTimes = getBetweenTimes(takenTimesMerged);
+        ArrayList<TimeRange> finalTimes = filterTimes(validTimes, request);
+        return finalTimes;
+    }
   } 
 }

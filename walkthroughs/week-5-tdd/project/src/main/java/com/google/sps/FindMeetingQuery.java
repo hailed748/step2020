@@ -22,17 +22,17 @@ import java.util.HashSet;
 
 public final class FindMeetingQuery {
 
-  public ArrayList<TimeRange> getMergedTimes(ArrayList<TimeRange> takenTimes){
+  private ArrayList<TimeRange> getMergedTimes(ArrayList<TimeRange> takenTimes) {
     Collections.sort(takenTimes, TimeRange.ORDER_BY_START);
     TimeRange previous = takenTimes.get(0);
-    ArrayList<TimeRange> takenTimesMerged = new ArrayList<>();
-    for(TimeRange time: takenTimes){
-        if(time.overlaps(previous)){
+    ArrayList<TimeRange> takenTimesMerged = new ArrayList();
+    for(TimeRange time: takenTimes) {
+        if(time.overlaps(previous)) {
             int start = previous.start();
             int end = Math.max(time.end(),previous.end());
             previous = TimeRange.fromStartEnd(start,end,false);
         }
-        else{
+        else {
             takenTimesMerged.add(previous);
             previous = time;
         }
@@ -41,8 +41,8 @@ public final class FindMeetingQuery {
     return takenTimesMerged;
   }
 
-  public ArrayList<TimeRange> getBetweenTimes(ArrayList<TimeRange> takenTimesMerged){
-    ArrayList<TimeRange> validTimes = new ArrayList<>();
+  private ArrayList<TimeRange> getBetweenTimes(ArrayList<TimeRange> takenTimesMerged) {
+    ArrayList<TimeRange> validTimes = new ArrayList();
     TimeRange firstValid = takenTimesMerged.get(0);
     TimeRange lastValid = takenTimesMerged.get(takenTimesMerged.size() - 1);
     int first = firstValid.start();
@@ -65,10 +65,10 @@ public final class FindMeetingQuery {
     return validTimes;
   }
 
-  public ArrayList<TimeRange> filterTimes(ArrayList<TimeRange> validTimes, MeetingRequest request){
-    ArrayList<TimeRange> finalTimes = new ArrayList<>();
-    for(TimeRange time : validTimes){
-        if(time.duration() >= request.getDuration()){
+  private ArrayList<TimeRange> filterTimes(ArrayList<TimeRange> validTimes, MeetingRequest request) {
+    ArrayList<TimeRange> finalTimes = new ArrayList();
+    for(TimeRange time : validTimes) {
+        if(time.duration() >= request.getDuration()) {
             finalTimes.add(time);
         }
     }
@@ -76,49 +76,56 @@ public final class FindMeetingQuery {
     return finalTimes;
   }
 
+  /**
+   * Paramters: a collection of events occuring that day, and a meeting request containing
+   *            a time for the meeting, duration, and attendence list of manadatory
+   *            and optional attenedees
+   * Response: Based on the events happeing on the day, query will find and return time ranges
+               in which the meeting can be hosted because no mandatory members will have a conflict.
+               It will try to factor in optional attendees so long as they do not cause the mandatory
+               members to not attend. 
+   */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
 
-    if(request.getDuration() > TimeRange.WHOLE_DAY.duration()){
+    if(request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
         return Arrays.asList();
     }
 
-    if(events.isEmpty()){
+    if(events.isEmpty()) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
-    ArrayList<TimeRange> takenTimes = new ArrayList<>();
-    ArrayList<TimeRange> takenTimesOptional = new ArrayList<>();
+    ArrayList<TimeRange> takenTimes = new ArrayList();
+    ArrayList<TimeRange> takenTimesOptional = new ArrayList();
 
     for(Event event : events) {
-        if(!Collections.disjoint(event.getAttendees(),request.getAttendees())){
+        if(!Collections.disjoint(event.getAttendees(),request.getAttendees())) {
             takenTimes.add(event.getWhen());
         }
-
-        if(!Collections.disjoint(event.getAttendees(),request.getOptionalAttendees())){
+        if(!Collections.disjoint(event.getAttendees(),request.getOptionalAttendees())) {
             takenTimesOptional.add(event.getWhen());
         }
     }
 
-    if(takenTimes.isEmpty() && takenTimesOptional.isEmpty()){
+    if(takenTimes.isEmpty() && takenTimesOptional.isEmpty()) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
-    if(!takenTimes.isEmpty()){
+    if(!takenTimes.isEmpty()) {
         ArrayList<TimeRange> takenTimesMerged = getMergedTimes(takenTimes);
         ArrayList<TimeRange> validTimes = getBetweenTimes(takenTimesMerged);
         ArrayList<TimeRange> finalTimes = filterTimes(validTimes, request);
 
-        ArrayList<TimeRange> remove = new ArrayList<>();
-
-        for(TimeRange optional: takenTimesOptional){
-            for(TimeRange mandatory: finalTimes){
-                if(mandatory.overlaps(optional)){
+        ArrayList<TimeRange> remove = new ArrayList();
+        for(TimeRange optional: takenTimesOptional) {
+            for(TimeRange mandatory: finalTimes) {
+                if(mandatory.overlaps(optional)) {
                     remove.add(mandatory);
                 }
             }
         }
 
-        if(remove.size()!= finalTimes.size()){
+        if(remove.size()!= finalTimes.size()) {
             finalTimes.removeAll(remove);
             return finalTimes;
         }
@@ -126,7 +133,7 @@ public final class FindMeetingQuery {
             return finalTimes;
         }
     }
-    else{
+    else {
         ArrayList<TimeRange> takenTimesMerged = getMergedTimes(takenTimesOptional);
         ArrayList<TimeRange> validTimes = getBetweenTimes(takenTimesMerged);
         ArrayList<TimeRange> finalTimes = filterTimes(validTimes, request);

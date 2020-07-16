@@ -75,6 +75,7 @@ public final class FindMeetingQuery {
     Collections.sort(finalTimes, TimeRange.ORDER_BY_START);
     return finalTimes;
   }
+  
   /**
    * Parameters: a collection of events occuring that day, and a meeting request containings
    * a time for the meeting, duration, and attendence list of manadatory and optional attenedees

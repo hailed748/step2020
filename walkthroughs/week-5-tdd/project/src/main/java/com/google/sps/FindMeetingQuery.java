@@ -27,11 +27,11 @@ public final class FindMeetingQuery {
     TimeRange previous = takenTimes.get(0);
     ArrayList<TimeRange> takenTimesMerged = new ArrayList();
 
-    for(TimeRange time: takenTimes) {
-      if(time.overlaps(previous)) {
+    for (TimeRange time : takenTimes) {
+      if (time.overlaps(previous)) {
         int start = previous.start();
-        int end = Math.max(time.end(),previous.end());
-        previous = TimeRange.fromStartEnd(start,end,false);
+        int end = Math.max(time.end(), previous.end());
+        previous = TimeRange.fromStartEnd(start, end, false);
       } else {
           takenTimesMerged.add(previous);
           previous = time;
@@ -47,19 +47,19 @@ public final class FindMeetingQuery {
     TimeRange lastValid = takenTimesMerged.get(takenTimesMerged.size() - 1);
     int first = firstValid.start();
     int last = lastValid.end();
-    validTimes.add(TimeRange.fromStartEnd(0,first,false));
-    validTimes.add(TimeRange.fromStartEnd(last,1440,false));
+    validTimes.add(TimeRange.fromStartEnd(0, first ,false));
+    validTimes.add(TimeRange.fromStartEnd(last, 1440, false));
 
-    if(takenTimesMerged.size()>1) {
+    if (takenTimesMerged.size()>1) {
       for (int i = 0; i < takenTimesMerged.size(); i++) {
-        if(i == takenTimesMerged.size()-1) {
+        if (i == takenTimesMerged.size()-1) {
           break;
         }
         TimeRange currentRange = takenTimesMerged.get(i);
         TimeRange adjRange = takenTimesMerged.get(i+1);
         int newStart = currentRange.end();
         int newEnd = adjRange.start();
-        validTimes.add(TimeRange.fromStartEnd(newStart,newEnd,false));
+        validTimes.add(TimeRange.fromStartEnd(newStart, newEnd, false));
       }
     }
     return validTimes;
@@ -67,8 +67,8 @@ public final class FindMeetingQuery {
 
   private ArrayList<TimeRange> filterTimes(ArrayList<TimeRange> validTimes, MeetingRequest request) {
     ArrayList<TimeRange> finalTimes = new ArrayList();
-    for(TimeRange time : validTimes) {
-      if(time.duration() >= request.getDuration()) {
+    for (TimeRange time : validTimes) {
+      if (time.duration() >= request.getDuration()) {
           finalTimes.add(time);
       }
     }
@@ -86,47 +86,43 @@ public final class FindMeetingQuery {
    * members to not attend. 
    */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    if(request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
+    if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
         return Arrays.asList();
     }
-    if(events.isEmpty()) {
+    if (events.isEmpty()) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
     ArrayList<TimeRange> takenTimes = new ArrayList();
     ArrayList<TimeRange> takenTimesOptional = new ArrayList();
-    for(Event event : events) {
-      if(!Collections.disjoint(event.getAttendees(),request.getAttendees())) {
+    for (Event event : events) {
+      if (!Collections.disjoint(event.getAttendees(), request.getAttendees())) {
           takenTimes.add(event.getWhen());
         }
-      if(!Collections.disjoint(event.getAttendees(),request.getOptionalAttendees())) {
+      if (!Collections.disjoint(event.getAttendees(), request.getOptionalAttendees())) {
           takenTimesOptional.add(event.getWhen());
         }
     }
 
-    if(takenTimes.isEmpty() && takenTimesOptional.isEmpty()) {
+    if (takenTimes.isEmpty() && takenTimesOptional.isEmpty()) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
-    }
-
-    if(!takenTimes.isEmpty()) {
+    } else if (!takenTimes.isEmpty()) {
       ArrayList<TimeRange> takenTimesMerged = getMergedTimes(takenTimes);
       ArrayList<TimeRange> validTimes = getBetweenTimes(takenTimesMerged);
       ArrayList<TimeRange> finalTimes = filterTimes(validTimes, request);
       ArrayList<TimeRange> remove = new ArrayList();
 
-      for(TimeRange optional: takenTimesOptional) {
-        for(TimeRange mandatory: finalTimes) {
-          if(mandatory.overlaps(optional)) {
+      for (TimeRange optional : takenTimesOptional) {
+        for (TimeRange mandatory : finalTimes) {
+          if (mandatory.overlaps(optional)) {
               remove.add(mandatory);
             }
           }
         }
-        if(remove.size()!= finalTimes.size()) {
+        if (remove.size() != finalTimes.size()) {
           finalTimes.removeAll(remove);
-          return finalTimes;
-        } else {
-          return finalTimes;
-        }
+        } 
+        return finalTimes;
     } else {
       ArrayList<TimeRange> takenTimesMerged = getMergedTimes(takenTimesOptional);
       ArrayList<TimeRange> validTimes = getBetweenTimes(takenTimesMerged);

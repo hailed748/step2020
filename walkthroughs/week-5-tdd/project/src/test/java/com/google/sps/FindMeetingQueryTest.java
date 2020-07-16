@@ -306,7 +306,7 @@ public final class FindMeetingQueryTest {
   public void optionalAttendees_whenCanAttend_shouldImpactSchedule() {
     // Events  :       |--A--|--o--|--B--|
     // Day     : |-----------------------------|
-    // Options : |-----|                 |--3--|
+    // Options : |-----|                 |-----|
 
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_30_MINUTES),
@@ -358,8 +358,8 @@ public final class FindMeetingQueryTest {
   @Test
   public void manyOptionsOnlyOptionalAttendees() {
     // Events  : |-A-|   |-B-|   |-B-|   |-A-|  
-    // Day     : |---------------------------|
-    // Options :     |---|   |---|   |---|
+    // Day     : |-------------------------------|
+    // Options :     |---|   |---|   |---|   |---|
 
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartDuration(TimeRange.START_OF_DAY, 240),

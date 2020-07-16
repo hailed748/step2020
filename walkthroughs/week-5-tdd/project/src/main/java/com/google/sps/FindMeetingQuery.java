@@ -24,44 +24,43 @@ public final class FindMeetingQuery {
 
   private ArrayList<TimeRange> getMergedTimes(ArrayList<TimeRange> takenTimes) {
     Collections.sort(takenTimes, TimeRange.ORDER_BY_START);
-    TimeRange previous = takenTimes.get(0);
     ArrayList<TimeRange> takenTimesMerged = new ArrayList();
+    if (takenTimes.size() != 0) {
+      TimeRange previous = takenTimes.get(0);
 
-    for (TimeRange time : takenTimes) {
-      if (time.overlaps(previous)) {
-        int start = previous.start();
-        int end = Math.max(time.end(), previous.end());
-        previous = TimeRange.fromStartEnd(start, end, false);
-      } else {
+      for (TimeRange time : takenTimes) {
+        if (time.overlaps(previous)) {
+          int start = previous.start();
+          int end = Math.max(time.end(), previous.end());
+          previous = TimeRange.fromStartEnd(start, end, false);
+        } else {
           takenTimesMerged.add(previous);
           previous = time;
         }
+      }
+      takenTimesMerged.add(previous);
     }
-    takenTimesMerged.add(previous);
     return takenTimesMerged;
   }
 
   private ArrayList<TimeRange> getBetweenTimes(ArrayList<TimeRange> takenTimesMerged) {
+    int END_OF_DAY = 1440;
+    int START_OF_DAY = 0;
+    TimeRange emptyAtStart = TimeRange.fromStartDuration(START_OF_DAY,0);
+    TimeRange emptyAtEnd = TimeRange.fromStartDuration(END_OF_DAY, 0);
+    takenTimesMerged.add(0, emptyAtStart);
+    takenTimesMerged.add(emptyAtEnd);
+    
     ArrayList<TimeRange> validTimes = new ArrayList();
-    TimeRange firstValid = takenTimesMerged.get(0);
-    TimeRange lastValid = takenTimesMerged.get(takenTimesMerged.size() - 1);
-    int first = firstValid.start();
-    int last = lastValid.end();
-    validTimes.add(TimeRange.fromStartEnd(0, first ,false));
-    validTimes.add(TimeRange.fromStartEnd(last, 1440, false));
-
-    if (takenTimesMerged.size()>1) {
-      for (int i = 0; i < takenTimesMerged.size(); i++) {
-        if (i == takenTimesMerged.size()-1) {
-          break;
-        }
-        TimeRange currentRange = takenTimesMerged.get(i);
-        TimeRange adjRange = takenTimesMerged.get(i+1);
-        int newStart = currentRange.end();
-        int newEnd = adjRange.start();
-        validTimes.add(TimeRange.fromStartEnd(newStart, newEnd, false));
-      }
+    for (int i = 0; i < takenTimesMerged.size() - 1; i++) {
+      TimeRange currentRange = takenTimesMerged.get(i);
+      TimeRange adjRange = takenTimesMerged.get(i + 1);
+      int newStart = currentRange.end();
+      int newEnd = adjRange.start();
+      validTimes.add(TimeRange.fromStartEnd(newStart, newEnd, false));
     }
+
+    System.out.println(validTimes);
     return validTimes;
   }
 
@@ -72,10 +71,10 @@ public final class FindMeetingQuery {
           finalTimes.add(time);
       }
     }
-    Collections.sort(finalTimes, TimeRange.ORDER_BY_START);
     return finalTimes;
   }
-  
+
+
   /**
    * Parameters: a collection of events occuring that day, and a meeting request containings
    * a time for the meeting, duration, and attendence list of manadatory and optional attenedees
@@ -105,9 +104,7 @@ public final class FindMeetingQuery {
         }
     }
 
-    if (takenTimes.isEmpty() && takenTimesOptional.isEmpty()) {
-        return Arrays.asList(TimeRange.WHOLE_DAY);
-    } else if (!takenTimes.isEmpty()) {
+    if (!takenTimes.isEmpty()) {
       ArrayList<TimeRange> takenTimesMerged = getMergedTimes(takenTimes);
       ArrayList<TimeRange> validTimes = getBetweenTimes(takenTimesMerged);
       ArrayList<TimeRange> finalTimes = filterTimes(validTimes, request);

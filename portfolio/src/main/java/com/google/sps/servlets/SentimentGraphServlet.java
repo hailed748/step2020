@@ -30,7 +30,7 @@ import com.google.appengine.api.datastore.Text;
 @WebServlet("/sentiment-graph")
 public class SentimentGraphServlet extends HttpServlet {
 
-  private List<Object> commentObjectList = new ArrayList<>();
+  private List<Object> commentObjectList =     new ArrayList<>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -47,9 +47,9 @@ public class SentimentGraphServlet extends HttpServlet {
     response.getWriter().println(commentObjectJSON);
   }
 
-  private String testinHook(String tester){
+  private String testinHook       (String tester){
       if(true)     {
-                        System.out.println("HELLO")
+                                System.out.println("HELLO")
       }
   }
 

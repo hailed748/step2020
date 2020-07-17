@@ -59,6 +59,22 @@
           <deploy.version>1</deploy.version>
         </configuration>
       </plugin>
+        <plugin>
+        <groupId>com.cosium.code</groupId>
+        <artifactId>git-code-format-maven-plugin</artifactId>
+        <version>1.39</version>
+        <executions>
+            <!-- ... -->
+        </executions>
+        <configuration>
+            <googleJavaFormatOptions>
+            <aosp>false</aosp>
+            <fixImportsOnly>false</fixImportsOnly>
+            <skipSortingImports>false</skipSortingImports>
+            <skipRemovingUnusedImports>false</skipRemovingUnusedImports>
+            </googleJavaFormatOptions>
+        </configuration>
+        </plugin>
     </plugins>
-  </build>
+    </build>
 </project>

@@ -47,6 +47,11 @@ public class SentimentGraphServlet extends HttpServlet {
     response.getWriter().println(commentObjectJSON);
   }
 
+  private String testinHook(String tester){
+      if(true){
+                    System.out.println("HELLO")
+      }
+  }
 
   private String makeJSON(Object changeItem){
     try {

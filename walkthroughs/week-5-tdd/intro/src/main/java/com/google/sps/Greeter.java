@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 package com.google.sps;
 
 /**
@@ -22,6 +23,7 @@ public class Greeter {
    * Returns a greeting for the given name.
    */
   public String greet(String name) {
-    return "Hello " + name;
+    String str = name.replaceAll("\\s", "");
+    return "Hello " + str;
   }
 }

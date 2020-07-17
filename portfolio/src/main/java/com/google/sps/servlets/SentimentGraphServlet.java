@@ -48,8 +48,8 @@ public class SentimentGraphServlet extends HttpServlet {
   }
 
   private String testinHook(String tester){
-      if(true){
-                    System.out.println("HELLO")
+      if(true)     {
+                        System.out.println("HELLO")
       }
   }
 

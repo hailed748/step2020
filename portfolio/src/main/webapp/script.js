@@ -98,7 +98,7 @@ function makeSentGraph(){
     });
 }
 
-function createListItem(text) {
+function createListItem(text){
   const liElement = document.createElement("li");
   liElement.innerText = text;
   return liElement;

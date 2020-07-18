@@ -563,4 +563,5 @@ span {
     font-display: auto;
     align-content: center;
     color: blue;
+    z-index: 2;
 }

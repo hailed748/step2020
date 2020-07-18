@@ -113,11 +113,11 @@ function createCommentItem(comment){
     commentContainer = document.createElement("div")
     commentContainer.setAttribute("class","comment-container");
 
-    commentText = document.createElement("p");
+    commentText =      document.createElement("p");
     commentText.setAttribute("class","comment");
     commentText.innerHTML = commentItem;
 
-    commentTime = document.createElement("p");
+    commentTime =      document.createElement("p");
     commentTime.setAttribute("class","timestamp");
     commentTime.innerHTML = commentDate;
 

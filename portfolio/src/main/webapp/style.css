@@ -558,3 +558,8 @@ span {
 .margin-fix {
     margin: auto;
 }
+
+.test{
+    font-display: auto;
+    align-content: center;
+}

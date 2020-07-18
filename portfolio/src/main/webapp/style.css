@@ -1,567 +1,565 @@
 body,
 html {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
- 
+
 .hero {
-    align-items: center;
-    background: black;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    width: 100%;
+  align-items: center;
+  background: black;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
 }
- 
+
 .hero::after {
-    background: rgba(0, 0, 0, 0.7);
-    content: '';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    z-index: 15;
+  background: rgba(0, 0, 0, 0.7);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 15;
 }
- 
+
 .hero video {
-    height: 100%;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 5;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 5;
 }
 
 .texture {
-    background: url('../texture.png');
-    height: 100%;
-    left: 0;
-    position:absolute;
-    top: 0;
-    width: 100%;
-    z-index: 10;
+  background: url("../texture.png");
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
 }
- 
+
 .social {
-    display: flex;
-    position: absolute;
-    right: 40px;
-    top: 40px;
-    z-index: 15;
+  display: flex;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  z-index: 15;
 }
- 
+
 .icon {
-    filter: invert(100%);
-    height: 64px;
-    padding: 15px;
-    width: 64px;
+  filter: invert(100%);
+  height: 64px;
+  padding: 15px;
+  width: 64px;
 }
- 
+
 .headline-text {
-    border: 5px solid white;
-    color: white;
-    font: medium 60px/1.2 "Frank Ruhl Libre";
-    padding: 40px;
-    position: relative;
-    text-align: center;
-    z-index: 20;
+  border: 5px solid white;
+  color: white;
+  font: medium 60px/1.2 "Frank Ruhl Libre";
+  padding: 40px;
+  position: relative;
+  text-align: center;
+  z-index: 20;
 }
- 
+
 .profile {
-    background-color: #FBFBFB;
-    display: block;
-    overflow: hidden;
-    padding: 100px 400px 200px;
+  background-color: #fbfbfb;
+  display: block;
+  overflow: hidden;
+  padding: 100px 400px 200px;
 }
- 
- 
+
 .profile h1 {
-    font: 48px/1.2 "Frank Ruhl Libre";
-    margin: auto;
-    text-align: center;
+  font: 48px/1.2 "Frank Ruhl Libre";
+  margin: auto;
+  text-align: center;
 }
- 
+
 .profile-wrapper {
-    align-items: center;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    padding-top:100px
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  padding-top: 100px;
 }
- 
+
 #headshot {
-    background-image: url(images/photos/me1.jpeg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 3px solid white; 
-    border-radius: 50%; 
-    height: 400px;
-    margin-bottom: 20px;
-    min-height: 400px;
-    min-width: 400px;
-    width: 400px;
+  background-image: url(images/photos/me1.jpeg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 3px solid white;
+  border-radius: 50%;
+  height: 400px;
+  margin-bottom: 20px;
+  min-height: 400px;
+  min-width: 400px;
+  width: 400px;
 }
- 
+
 .about-description {
-    font: 20px/2 "Frank Ruhl Libre";
-    padding-left: 150px;
-    width: 1000px;
+  font: 20px/2 "Frank Ruhl Libre";
+  padding-left: 150px;
+  width: 1000px;
 }
- 
+
 .details {
-    font-size: 20px;
-    font-weight: 100;
-    line-height: 1.6;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1.6;
 }
- 
+
 .first {
-    display: inline-block;
-    font-weight: bold;
-    padding-right: 5px;
+  display: inline-block;
+  font-weight: bold;
+  padding-right: 5px;
 }
- 
+
 .titles {
-    font: 48px/1.2 "Frank Ruhl Libre";
-    font-weight: 500;
-    margin: auto;
-    padding: 60px 0 0;
-    text-align: center;
+  font: 48px/1.2 "Frank Ruhl Libre";
+  font-weight: 500;
+  margin: auto;
+  padding: 60px 0 0;
+  text-align: center;
 }
 
 .resume {
-    display: flex;
-    background-color:#F6F6F6;
-    padding: 0px;
+  display: flex;
+  background-color: #f6f6f6;
+  padding: 0px;
 }
 
 .resume hr {
-    width: 85%;
-    margin: 40px;
+  width: 85%;
+  margin: 40px;
 }
 
 .resume h1 {
-    font: 48px/1.2 "Frank Ruhl Libre";
-    margin: 50px 0 0;
-    text-align: center; 
+  font: 48px/1.2 "Frank Ruhl Libre";
+  margin: 50px 0 0;
+  text-align: center;
 }
- 
+
 .resume h2 {
-    color: darkgoldenrod;
-    font: 40px/2 "Frank Ruhl Libre";
-    font-weight: bold;
-    margin: 20px 0 20px 40px;
+  color: darkgoldenrod;
+  font: 40px/2 "Frank Ruhl Libre";
+  font-weight: bold;
+  margin: 20px 0 20px 40px;
 }
 
 .left {
-    float: left;
-    width: 60%;
-    background-color:#F6F6F6;
+  float: left;
+  width: 60%;
+  background-color: #f6f6f6;
 }
 
 .right {
-    background-image: url("images/photos/sidebanner.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    float: right;
-    width: 40%;
+  background-image: url("images/photos/sidebanner.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: right;
+  width: 40%;
 }
 
 .courses {
-    font-size: 18px;
-    line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.5;
 }
- 
-#special{
-    margin-top: 10px;
+
+#special {
+  margin-top: 10px;
 }
 .courses li {
-    margin-bottom: 15px;
-    margin-top: 10px;
+  margin-bottom: 15px;
+  margin-top: 10px;
 }
 
 .masonry-edu {
-    column-gap: 40px;
-    display: grid;    
-    grid-template-columns: repeat(17, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    margin: 40px;
-    row-gap: 40px;
+  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(17, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  margin: 40px;
+  row-gap: 40px;
 }
 
 .cell-00 {
-    grid-column: 1 / 8;
-    grid-row: 1 / 4;
-    margin: 0;
+  grid-column: 1 / 8;
+  grid-row: 1 / 4;
+  margin: 0;
 }
- 
+
 .cell-01 {
-    grid-column: 8 / 18;
-    grid-row: 1 / 4;
-    margin: 0;
+  grid-column: 8 / 18;
+  grid-row: 1 / 4;
+  margin: 0;
 }
 
 .masonry-exp {
-    column-gap: 40px;
-    display: grid;    
-    grid-template-columns: repeat(17, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    margin: 40px;
-    row-gap: 40px;
+  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(17, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  margin: 40px;
+  row-gap: 40px;
 }
 
 .cell-11 {
-    grid-column: 1 / 8;
-    grid-row: 1 / 4;
-    margin: 0;
+  grid-column: 1 / 8;
+  grid-row: 1 / 4;
+  margin: 0;
 }
- 
+
 .cell-22 {
-    grid-column: 8 / 18;
-    grid-row: 1 / 4;
-    margin: 0;
+  grid-column: 8 / 18;
+  grid-row: 1 / 4;
+  margin: 0;
 }
 
 .cell-33 {
-    grid-column: 1 / 8;
-    grid-row: 4 / 7;
-    margin: 0;
+  grid-column: 1 / 8;
+  grid-row: 4 / 7;
+  margin: 0;
 }
- 
+
 .cell-44 {
-    grid-column: 8 / 18;
-    grid-row: 4 / 7;
-    margin: 0;
+  grid-column: 8 / 18;
+  grid-row: 4 / 7;
+  margin: 0;
 }
 
 .cell-55 {
-    grid-column: 1 / 8;
-    grid-row: 7 / 10;
-    margin: 0;
+  grid-column: 1 / 8;
+  grid-row: 7 / 10;
+  margin: 0;
 }
- 
+
 .cell-66 {
-    grid-column: 8 / 18;
-    grid-row: 7 / 10;
-    margin: 0;
+  grid-column: 8 / 18;
+  grid-row: 7 / 10;
+  margin: 0;
 }
- 
+
 .projects {
-    background-color: #FBFBFB;
-    padding: 50px 200px;
+  background-color: #fbfbfb;
+  padding: 50px 200px;
 }
 
 #proj {
-    margin: 0 auto;
-    width: 200px;
+  margin: 0 auto;
+  width: 200px;
 }
- 
+
 .container {
-    display: block;
-    margin: auto;
-    max-width: 1600px;
+  display: block;
+  margin: auto;
+  max-width: 1600px;
 }
- 
+
 .cards {
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 15px;
-    padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+  padding: 20px;
 }
- 
+
 .card {
-    background:#F6F6F6;
-    border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);   
-    color: darkslategrey;
-    margin: 45px;
-    max-width: 380px;
-    position: relative;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
+  background: #f6f6f6;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  color: darkslategrey;
+  margin: 45px;
+  max-width: 380px;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }
- 
+
 .card::after {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: opacity 0.3s ease-in-out;
-    z-index: -1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
 }
- 
+
 .card:hover {
-    transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
 }
- 
+
 .card:hover::after {
-    opacity: 1; 
+  opacity: 1;
 }
- 
+
 span {
-    display: block;
+  display: block;
 }
- 
+
 .card-summary {
-    padding: 20px;
+  padding: 20px;
 }
- 
+
 .card-thumbnail {
-    background-blend-mode: overlay;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px 10px 0 0;
-    height: 270px;
-    overflow: hidden;
-    position: relative;
+  background-blend-mode: overlay;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px 10px 0 0;
+  height: 270px;
+  overflow: hidden;
+  position: relative;
 }
- 
+
 .date {
-    background: #e74c3c;
-    border-radius: 100%;
-    color: white;
-    font-weight: bolder;
-    height: 50px;
-    padding: 10px;
-    position: absolute;
-    right: 12px;
-    text-align: center;
-    top: 12px;
-    width: 50px;
+  background: #e74c3c;
+  border-radius: 100%;
+  color: white;
+  font-weight: bolder;
+  height: 50px;
+  padding: 10px;
+  position: absolute;
+  right: 12px;
+  text-align: center;
+  top: 12px;
+  width: 50px;
 }
- 
+
 .day {
-    font-size: 20px;
-    margin: 0;
+  font-size: 20px;
+  margin: 0;
 }
 .month {
-    font-size: 16px;
-    margin: 0;
-    padding: 5px;
-    text-transform: uppercase;
+  font-size: 16px;
+  margin: 0;
+  padding: 5px;
+  text-transform: uppercase;
 }
- 
+
 .card-topic {
-    background: #e74c3c;
-    bottom: 0;
-    color: white;
-    font: 16px/1.3 "Frank Ruhl Libre";
-    font-weight: bold;
-    margin: 0;
-    padding: 5px;
-    position: absolute;
-    text-align: center;
-    text-transform: uppercase;
-    width: 33%;
+  background: #e74c3c;
+  bottom: 0;
+  color: white;
+  font: 16px/1.3 "Frank Ruhl Libre";
+  font-weight: bold;
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  width: 33%;
 }
- 
-.card-title {    
-    color: #3e3f40;
-    font: 24px/1.2 "Frank Ruhl Libre";
-    font-weight: 600;
-    margin: 0;
-    padding: 0 0 10px;
+
+.card-title {
+  color: #3e3f40;
+  font: 24px/1.2 "Frank Ruhl Libre";
+  font-weight: 600;
+  margin: 0;
+  padding: 0 0 10px;
 }
- 
+
 .card-subtitle {
-    color: #e74c3c;
-    font: 16px/1.2 "Frank Ruhl Libre";
-    margin: 0 auto;
+  color: #e74c3c;
+  font: 16px/1.2 "Frank Ruhl Libre";
+  margin: 0 auto;
 }
- 
+
 .card-description {
-    color: #3e3f40;
-    font: 14px/2 "Frank Ruhl Libre";
-    font-weight: 500;
+  color: #3e3f40;
+  font: 14px/2 "Frank Ruhl Libre";
+  font-weight: 500;
 }
 
 .thumb1 {
-    background-image: url("images/photos/proj2.jpeg");
+  background-image: url("images/photos/proj2.jpeg");
 }
- 
+
 .thumb2 {
-    background-image: url("images/photos/proj1.jpeg");
+  background-image: url("images/photos/proj1.jpeg");
 }
- 
+
 .thumb3 {
-    background-image: url("images/photos/proj3.jpeg");
+  background-image: url("images/photos/proj3.jpeg");
 }
 
 .photography {
-    align-items: center;
-    background-color: #F6F6F6 ;
-    display: block;
-    padding: 0 0 50px 0px;
-    position: relative;
+  align-items: center;
+  background-color: #f6f6f6;
+  display: block;
+  padding: 0 0 50px 0px;
+  position: relative;
 }
 
 #photo {
-    margin:0 auto;
-    width: 400px;
-    
+  margin: 0 auto;
+  width: 400px;
 }
- 
+
 .masonry {
-    column-gap: 40px;
-    display: grid;    
-    grid-template-columns: repeat(18, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    margin: auto;
-    max-height: 80vh;
-    max-width: 80vh;
-    padding-top: 40px;
-    row-gap: 40px;
+  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  margin: auto;
+  max-height: 80vh;
+  max-width: 80vh;
+  padding-top: 40px;
+  row-gap: 40px;
 }
- 
+
 .grid-pic {
-    display: block;
-    border-radius: 5px;
-    height:100%;
-    margin: 0;
-    object-fit: cover;
-    width: 100%;
+  display: block;
+  border-radius: 5px;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  width: 100%;
 }
- 
+
 .cell-1 {
-    grid-column: 1 / 7;
-    grid-row: 1 / 3;
-    margin: 0;
+  grid-column: 1 / 7;
+  grid-row: 1 / 3;
+  margin: 0;
 }
- 
+
 .cell-2 {
-    grid-column: 7 / 13;
-    grid-row: 1 / 5;
-    margin: 0;
+  grid-column: 7 / 13;
+  grid-row: 1 / 5;
+  margin: 0;
 }
- 
+
 .cell-3 {
-    grid-column: 13 / 19;
-    grid-row: 1 / 4;
-    margin: 0;
+  grid-column: 13 / 19;
+  grid-row: 1 / 4;
+  margin: 0;
 }
- 
+
 .cell-4 {
-    grid-column: 1 / 7;
-    grid-row: 3 / 7;
-    margin: 0;
+  grid-column: 1 / 7;
+  grid-row: 3 / 7;
+  margin: 0;
 }
- 
+
 .cell-5 {
-    grid-column: 7 / 13;
-    grid-row: 5 / 9;
-    margin: 0;
+  grid-column: 7 / 13;
+  grid-row: 5 / 9;
+  margin: 0;
 }
- 
+
 .cell-6 {
-    grid-column: 13 / 19;
-    grid-row: 4 / 8;
-    margin: 0;
+  grid-column: 13 / 19;
+  grid-row: 4 / 8;
+  margin: 0;
 }
 
 .java-tests {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    margin: 100px 200px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin: 100px 200px;
 }
 
 #name {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 .comment-entry {
-    width: 40%;
+  width: 40%;
 }
 
 .comment-section {
-    display: flex;
-    flex-flow: row wrap;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .comment-container {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 #history-container {
-    align-items: left;
-    display: flex;
-    flex-flow: row wrap;
-    height: 600px;
-    justify-content: flex-start;
-    margin-right: 100px;
-    margin-top: 30px;
-    overflow: scroll;
-    width: 45%;
+  align-items: left;
+  display: flex;
+  flex-flow: row wrap;
+  height: 600px;
+  justify-content: flex-start;
+  margin-right: 100px;
+  margin-top: 30px;
+  overflow: scroll;
+  width: 45%;
 }
 
 #chart-container-sent {
-    align-items: center;
-    display: flex;
-    height: 600px;
-    justify-content: center;
-    margin-top: 45px;
-    width: 45%;
+  align-items: center;
+  display: flex;
+  height: 600px;
+  justify-content: center;
+  margin-top: 45px;
+  width: 45%;
 }
 
 .comment {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .timestamp {
-    font-size: 10px;
-    font-weight: bold;
-    padding-right: 10px;
-    text-align: right;
-    vertical-align: text-bottom;
+  font-size: 10px;
+  font-weight: bold;
+  padding-right: 10px;
+  text-align: right;
+  vertical-align: text-bottom;
 }
 
 .comment-divider {
-    position: relative;
-    margin: auto 0;
-    width: 100%;
+  position: relative;
+  margin: auto 0;
+  width: 100%;
 }
 
 .controls {
-    width: 45%;
-    margin: auto 0;
-    padding: 30px 0;
+  width: 45%;
+  margin: auto 0;
+  padding: 30px 0;
 }
 
 .profile #short-about {
-    margin: auto;
-    width: 200px;
+  margin: auto;
+  width: 200px;
 }
 
 #short-resume {
-    margin: auto;
-    width: 350px;
+  margin: auto;
+  width: 350px;
 }
 
 #short-proj {
-    margin: auto;
-    width: 140px;
+  margin: auto;
+  width: 140px;
 }
 
 #short-photo {
-    margin: auto;
-    width: 250px;
+  margin: auto;
+  width: 250px;
 }
 
 #short-comment {
-    margin: auto;
-    width: 190px;
+  margin: auto;
+  width: 190px;
 }
 
 .margin-fix {
-    margin: auto;
+  margin: auto;
 }
 
-.test{
-    font-display: auto;
-    align-content: center;
-    color: blue;
-    z-index: 2;
+.test {
+  font-display: auto;
+  align-content: center;
+  color: blue;
+  z-index: 2;
 }

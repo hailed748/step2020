@@ -136,9 +136,9 @@ function createCommentItem(comment) {
   commentTime.setAttribute("class", "timestamp");
   commentTime.innerHTML = commentDate;
 
-  commentContainer.appendChild(     commentText);
-  commentContainer.appendChild(    commentTime);
-  historyContainer.appendChild(    commentContainer);
+  commentContainer.appendChild(       commentText);
+  commentContainer.appendChild(      commentTime);
+  historyContainer.appendChild(      commentContainer);
 
   divider = document.createElement("hr");
   divider.setAttribute("class", "comment-divider");
